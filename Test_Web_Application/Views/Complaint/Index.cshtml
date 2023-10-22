@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Test_Web_Application.Models.ComplaintsApp>
+@if (TempData["success"] != null)
+{
+    <h2 class="h5 text-center mt-5">@TempData["success"]</h2>
+}
+
+<div class="row m-5">
+    <div class="col-1"></div>
+    <div class="col-5 text-start"><h1 class="me-5 ms-2">Complaints</h1></div>
+    <div class="col-5 text-end display-6"> <a asp-controller="Complaint" asp-action="Create" class="btn btn-outline-primary rounded-1 shadow">Create New Copmlaint</a></div>
+    <div class="col-1"></div>
+</div>
+
+
+<div class="row me-5 ms-5 ">
+    <div class="col-1"></div>
+    <div class="col-10">
+    <table class="table table-bordered table-striped  shadow rounded-1 ">
+    <thead>
+        <tr>
+                <th class="text-center h5">
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+                <th class="text-center h5">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+                <th class="text-center h5">
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+                <th class="text-center h5">
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                    <td class="h6 text-center align-middle">
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+                    <td class="h6 text-center align-middle">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+                    <td class=" text-center align-middle">
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+                    <td class="h6 text-center align-middle">
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+                    <td class="h6 text-center align-middle">
+                        <div class=" btn-group rounded-1 " role="group">
+                            <a asp-controller="Complaint" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm rounded-1 border-1 shadow">Edit</a>
+                           
+
+                        </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="row">
+
+</div>

@@ -1,0 +1,61 @@
+﻿@model Test_Web_Application.Models.ComplaintsApp
+
+
+<div class="row m-5">
+    <div class="col-1"></div>
+    <div class="col-10 col-md-8 "><h4 class="">Update the Complaint</h4></div>
+    @*  <div class="col-6 col-md-6  text-end "> <img class="p-0 " src="@("~/Image/Create_Image.png")" asp-append-version="true " /></div>
+    *@
+    <div class="col-1"></div>
+</div>
+
+
+<div class=" row  align-middle me-5 ms-5 ">
+    <div class="col-1"></div>
+    <div class="col-10 ">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row mb-4">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label  text-black h5"></label>
+                        <input asp-for="Name" class="form-control shadow rounded-1 beige_color text-black " />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6 ">
+                    <div class="form-group">
+                        <label asp-for="Type" class="control-label text-black h5"></label>
+                        <input asp-for="Type" class="form-control shadow rounded-1 beige_color  text-black" />
+                        <span asp-validation-for="Type" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-4">
+                <label asp-for="Content" class="control-label h5"></label>
+                <textarea asp-for="Content" class="form-control shadow text-black beige_color" rows="4" placeholder=""></textarea>
+                <span asp-validation-for="Content" class="text-danger rounded-1"></span>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <input type="submit" value="Update" class="btn btn-primary green_color rounded-1 shadow" />
+                </div>
+                <div class="col-6 text-end ">
+                    <a asp-action="Index" class="btn bordr-2 rounded-1 shadow btn-outline-green" style="border-color:#11393B;color:#11393B ">Back to List</a>
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+    </div>
+    <div class="col-1"></div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
