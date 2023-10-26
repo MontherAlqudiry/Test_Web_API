@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\UserFiles\" />
+    <Folder Include="wwwroot\UserFile\" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,8 @@
 ﻿    @model Test_Web_Application.Models.ComplaintsApp
+@{
+   
+    var User = ViewBag.UserObject;
+}
 
 
     <div class="row m-5">
@@ -6,16 +10,18 @@
     <div class="col-8 col-md-8 "><h4 class="">Create New Complaint</h4></div>
    @*  <div class="col-6 col-md-6  text-end "> <img class="p-0 " src="@("~/Image/Create_Image.png")" asp-append-version="true " /></div>
       *@   
-    <div class="col-2"></div>
+ 
+    
     </div>
 
 
     <div class=" row  align-middle me-5 ms-5 ">
         <div class="col-2"></div>
         <div class="col-8 ">
-            <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row mb-4">
+                <input asp-for="UserId" type="hidden" value="@User.Id" class="form-control shadow rounded-1 text-black beige_color" />
                     <div class="col-6">
                         <div class="form-group">
                     <label asp-for="Name" class="control-label text-black h5"></label>
@@ -37,6 +43,13 @@
                 <textarea asp-for="Content" class="form-control shadow text-black beige_color" rows="4" placeholder=""></textarea>
             <span asp-validation-for="Content" class="text-danger rounded-1"></span>
                 </div>
+
+            <div class="form-group mb-5">
+                <label asp-for="uploadFile" class="control-label h5"></label>
+                <input asp-for="uploadFile"  class="form-control shadow text-black fw-bolder beige_color" >
+                <span asp-validation-for="uploadFile" class="text-danger rounded-1"></span>
+            </div>
+
                <div class="row">
                 <div class="form-group col-6">
                     <input type="submit" value="Create" class="btn btn-primary rounded-1 shadow green_color" />

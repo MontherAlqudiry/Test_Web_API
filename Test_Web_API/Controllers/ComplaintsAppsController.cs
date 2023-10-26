@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Test_Web_API.Data;
 using Test_Web_API.Models;
+using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 
 namespace Test_Web_API.Controllers
 {
@@ -15,21 +17,29 @@ namespace Test_Web_API.Controllers
     public class ComplaintsAppsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<ComplaintsAppsController> logger;
 
-        public ComplaintsAppsController(ApplicationDbContext context)
+        public ComplaintsAppsController(ApplicationDbContext context , ILogger<ComplaintsAppsController> _logger)
         {
             _context = context;
+            _logger = logger;
+           
         }
+        
 
         // GET: api/ComplaintsApps
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ComplaintsApp>>> GetComplaintsApp()
+        public async Task<ActionResult<IEnumerable<ComplaintsApp>>> GetComplaintsApp(string userId)
         {
           if (_context.ComplaintsApp == null)
           {
               return NotFound();
           }
-            return await _context.ComplaintsApp.ToListAsync();
+            //the code wase like this before edition
+            //return await _context.ComplaintsApp.ToListAsync();
+
+            return await _context.ComplaintsApp.Where(h => h.UserId.ToString() == userId).ToListAsync();
+           
         }
 
         // GET: api/ComplaintsApps/5
@@ -51,7 +61,6 @@ namespace Test_Web_API.Controllers
         }
 
         // PUT: api/ComplaintsApps/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutComplaintsApp(int id, ComplaintsApp complaintsApp)
         {
@@ -82,14 +91,17 @@ namespace Test_Web_API.Controllers
         }
 
         // POST: api/ComplaintsApps
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ComplaintsApp>> PostComplaintsApp(ComplaintsApp complaintsApp)
+        public async Task<ActionResult<ComplaintsApp>> PostComplaint([FromBody]ComplaintsApp complaintsApp)
         {
           if (_context.ComplaintsApp == null)
           {
               return Problem("Entity set 'ApplicationDbContext.ComplaintsApp'  is null.");
           }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             _context.ComplaintsApp.Add(complaintsApp);
             await _context.SaveChangesAsync();
 

@@ -1,0 +1,118 @@
+﻿@model Test_Web_Application.Models.User
+
+
+<div class="row me-5 ms-5 mt-5">
+    <div class="col-2"></div>
+    <div class="col-8 text-end"><h1 class="h4 ">Create an Account</h1></div>
+    <div class="col-2"></div>
+</div>
+
+
+<div class="row mt-1 mb-5 me-5 ms-5  ">
+    
+    <div class="col-2 align-items-baseline align-self-baseline ">
+       @*  <img class="align-items-center opacity-50 rounded-5 w-50" src="@("~/Image/home_imge3.png")" asp-append-version="true " /> *@
+    </div>
+    
+    <div class="col-8 card shadow-lg rounded-5 p-0 m-0 border-white ">
+        
+        <div class="row">
+           
+            <div class="col-md-5">
+            <img class="align-items-center  rounded-start-5  w-100 h-100  " src="@("~/Image/reg1_image-removebg.png")" asp-append-version="true" />
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5 mt-4 mb-4 ">
+                <form  asp-action="Rigester" >
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                   
+                   @*  <div class="form-group mt-3">
+                        <label asp-for="Id" class="control-label h6 text-black">First Name</label>
+                        <input asp-for="Id" class="form-control shadow beige_color rounded-1" />
+                        <span asp-validation-for="Id" class="text-black-50  h6"></span>
+                    </div> *@
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-6">
+
+                            <div class="form-group mt-3">
+                                <label asp-for="Firstname" class="control-label h6 text-black">First Name</label>
+                                <input asp-for="Firstname" class="form-control shadow beige_color rounded-1" />
+                                <span asp-validation-for="Firstname" class="text-black-50  h6"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-6 text-end ">
+                            <div class="form-group mt-3">
+                                <label asp-for="Lastname" class="control-label h6 text-black">Last Name</label>
+                                <input asp-for="Lastname" class="form-control shadow beige_color rounded-1" />
+                                <span asp-validation-for="Lastname" class="text-black-50  h6"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group mt-3">
+                        <label asp-for="Email" class="control-label h6 text-black"></label>
+                        <input asp-for="Email" class="form-control shadow beige_color rounded-1" autocomplete="on" />
+                        <span asp-validation-for="Email" class="text-black-50  h6 "></span>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label asp-for="Password" class="control-label h6 text-black">Password</label>
+                        <input asp-for="Password" class="form-control shadow beige_color rounded-1"  />
+                        <span asp-validation-for="Password" class="text-black-50 fw-bold h6"></span>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label asp-for="ConfirmPassword" class="control-label h6 text-black">Confirm Password</label>
+                        <input asp-for="ConfirmPassword" class="form-control shadow beige_color rounded-1" />
+                        <span asp-validation-for="ConfirmPassword" class="text-black-50  h6"></span>
+                    </div>
+
+                    <div class="row mt-5 mb-3  align-content-center align-items-center">
+                            
+                           <div class="col-md-12 col-12 align-self-center ">
+                                <div class="form-group ">
+                                <input type="submit" value="Rigester"  class="btn btn-primary shadow green_color rounded-1 w-100 align-self-center align-items-center" />
+                                </div>
+                           </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+   
+    <div class="col-2 align-items-end align-self-end">
+        <img class="align-items-center  rounded-5 opacity-75 w-100" src="@("~/Image/home_image2.png")" asp-append-version="true " />
+        </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@*  @section scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordInput = document.getElementById('password-input');
+            const togglePasswordButton = document.getElementById('toggle-password-button');
+
+            togglePasswordButton.addEventListener('click', function () {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    togglePasswordButton.textContent = 'Hide';
+                } else {
+                    passwordInput.type = 'password';
+                    togglePasswordButton.textContent = 'Show';
+                }
+            });
+        });
+    </script>
+}  *@
+
+
+
+

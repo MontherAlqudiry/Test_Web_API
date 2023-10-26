@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
-namespace Test_Web_Application.Models
+namespace Test_Web_API.Models
 {
     public class User
     {
@@ -34,6 +35,8 @@ namespace Test_Web_Application.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
+       
+       
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
 

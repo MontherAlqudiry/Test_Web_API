@@ -14,7 +14,16 @@ namespace Test_Web_API.Data
         public DbSet<Test_Web_API.Models.ComplaintsApp>? ComplaintsApp { get; set; }
 
        
-        public DbSet<Test_Web_API.Models.UplaodFile>? UplaodFile { get; set; }
+        public DbSet<Test_Web_API.Models.Admin>? Admin { get; set; }
+
+       
+        public DbSet<Test_Web_API.Models.User>? User { get; set; }
+
+       
+        public DbSet<Test_Web_API.Models.UserLogin>? UserLogin { get; set; }
+
+       
+        //public DbSet<Test_Web_API.Models.UplaodFile>? UplaodFile { get; set; }
 
        
        

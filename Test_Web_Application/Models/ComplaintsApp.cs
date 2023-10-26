@@ -13,6 +13,18 @@ namespace Test_Web_Application.Models
         [DisplayName("Type")]
         public string Type { get; set; }
 
+        public string File {  get; set; }
+
+        [NotMapped]
+        public IFormFile uploadFile { get; set; }
+
+        public bool Status { get; set; } 
+
+        public int UserId { get; set; }
+        [NotMapped]
+
+        [ForeignKey("UserId")]
+        public User User { get; set; }
 
 
     }

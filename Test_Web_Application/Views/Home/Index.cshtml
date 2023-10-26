@@ -1,7 +1,29 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json;
 
+@{
+    var User = ViewBag.UserObject;
+}
 
-    <div class="row align-items-center ">
+ <script> 
+     
+       
+        // Parse the JSON data received from the controller action
+         console.log('Starting JavaScript code');
+
+          var userData = '@Html.Raw(JsonConvert.SerializeObject(User))';
+         console.log('Retrieved userData:', userData);
+
+        // Check if userData is not empty (user is logged in)
+        if (userData) {
+            // Save user data in session storage
+            sessionStorage.setItem('userData', JSON.stringify(userData));
+            console.log('User data saved in session storage:', userData);
+        }
+    </script> 
+    
+    
+<div class="row align-items-center ">
         <div class=" col-12 col-md-5 mx-auto mt-3 mb-2  ">
         <img class="align-items-center  rounded-5 " src="@("~/Image/home_image1.png")" asp-append-version="true " />
         </div>
@@ -10,15 +32,16 @@
             <div class=" mb-3 display-6 h4 mb-2"><b>Demo</b> Online Complaint Management System </div>
 
             <div class="m-2 text-secondary mb-5"><p >Welcome to our online Complaint Management System, where your grievances find a platform to be heard. Share your experiences, report issues, and collaborate for resolutions. Your feedback is our driving force!</p> </div>
-            <div class="row mt-5" >
-                <div class="col-6"><a  asp-area="" asp-controller="Complaint" asp-action="Create" class="btn btn-outline-primary mx-1 border-1 rounded-1 shadow"> Complain Now</a></div>
-            <div class="col-6"><a asp-area="" asp-controller="Complaint" asp-action="Index" class="btn btn-outline-primary mx-1 border-1  rounded-1 shadow">Go To Complaints</a></div>
+                <div class="row mt-5" >
+                    <div class="col-2"></div>
+
+                    <div class="col-8"><a  asp-area="" asp-controller="Complaint" asp-action="Create" class="btn btn-outline-primary mx-1 border-1 rounded-1 shadow"> Complain Now</a></div>
+                    <div class="col-2"></div>
                 
-            </div>
+                </div>
         </div>
-    <div class="col-1  align-items-end align-self-end">
-        <img class="align-items-center  rounded-5 w-100" src="@("~/Image/home_image2.png")" asp-append-version="true " />
+        <div class="col-1  align-items-end align-self-end">
+            <img class="align-items-center  rounded-5 w-100" src="@("~/Image/home_image2.png")" asp-append-version="true " />
         </div>
 
-    </div>
-
+</div> 
