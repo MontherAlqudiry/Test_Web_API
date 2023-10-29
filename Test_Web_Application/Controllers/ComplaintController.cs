@@ -45,8 +45,29 @@ namespace Test_Web_Application.Controllers
 
             return View(CompList);
         }
+        [HttpGet]
+        public IActionResult GetComplaints()
+        {
+            IList<ComplaintsApp> CompList = new List<ComplaintsApp>();
 
-       
+           
+
+            //HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "/ComplaintsApps/GetComplaintsApp").Result;
+            HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "ComplaintsApps/GetAllComplaintsApp").Result;
+
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                string data = response.Content.ReadAsStringAsync().Result;
+                CompList = JsonConvert.DeserializeObject<List<ComplaintsApp>>(data);
+
+            }
+
+            return View(CompList);
+        }
+
+
         public IActionResult Create()
      
         {
@@ -142,7 +163,31 @@ namespace Test_Web_Application.Controllers
                 return View();
         }
 
-        [HttpGet]
+        public IActionResult Review(int Id) 
+        {
+            try
+            {
+                ComplaintsApp comp = new();
+                HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "ComplaintsApps/GetComplaintsApp/" + Id).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    comp = JsonConvert.DeserializeObject<ComplaintsApp>(data);
+                }
+
+                return View(comp);
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return View();
+
+            }
+
+        }
+        
+
+            [HttpGet]
         public IActionResult Edit(int Id) {
             try
             {

@@ -2,17 +2,34 @@
 
 
 <div class="row m-5">
-    <div class="col-1"></div>
-    <div class="col-10 col-md-8 "><h4 class="">Update the Complaint</h4></div>
+    <div class="col-2"></div>
+    <div class="col-4 col-md-4 "><h4 class="">Update the Complaint</h4></div>
+    <div class="col-4 col-md-4 text-end mt-2">
+
+        @if (Model.Status == "Pending")
+        {
+            <h6 class="text-info "><b>Pending</b></h6>
+        }
+        else if (Model.Status == "Approved")
+        {
+            <h6 class="text-success h6">Approved</h6>
+        }
+        else if (Model.Status == "Denied")
+        {
+            <h6 class="text-danger h6">Denied</h6>
+        }
+
+    </div>
+    <div class="col-2"></div>
     @*  <div class="col-6 col-md-6  text-end "> <img class="p-0 " src="@("~/Image/Create_Image.png")" asp-append-version="true " /></div>
     *@
-    <div class="col-1"></div>
+  
 </div>
 
 
 <div class=" row  align-middle me-5 ms-5 ">
-    <div class="col-1"></div>
-    <div class="col-10 ">
+    <div class="col-2"></div>
+    <div class="col-8 ">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row mb-4">
@@ -52,7 +69,7 @@
 
 
     </div>
-    <div class="col-1"></div>
+    <div class="col-2"></div>
 </div>
 @section Scripts {
     @{

@@ -40,7 +40,7 @@ namespace Test_Web_API.Models
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [NotMapped]
+   
         public string Role { get; set; } = "user";
 
 

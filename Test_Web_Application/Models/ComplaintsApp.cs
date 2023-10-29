@@ -18,7 +18,7 @@ namespace Test_Web_Application.Models
         [NotMapped]
         public IFormFile uploadFile { get; set; }
 
-        public bool Status { get; set; } 
+        public string Status { get; set; } = "Pending"; 
 
         public int UserId { get; set; }
         [NotMapped]

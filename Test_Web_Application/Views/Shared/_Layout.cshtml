@@ -30,12 +30,15 @@
     @{
 
         var userId = Context.Session.GetString("UserId");
-       
+        var UserRole = Context.Session.GetString("UserRole");
+      
         if (userId == null)
         {
             // Context.Response.Redirect("/Login");
 
         }
+
+       
     }
 
     <header>
@@ -53,14 +56,27 @@
                              <li class="nav-item">
                                 <a class="nav-link text-dark " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
+
                             <li class="nav-item ">
-                                <a class="nav-link text-dark " asp-area="" asp-controller="Complaint" asp-action="Index">Complaints</a>
-                            </li> 
+                                @if (UserRole.ToString().ToLower() == "user")
+                                {
+                                    <a class="nav-link text-dark " asp-area="" asp-controller="Complaint" asp-action="Index">Complaints</a>
+                                }
+                                else if (UserRole.ToString().ToLower() == "admin")
+                                {
+                                    <a class="nav-link text-dark " asp-area="" asp-controller="Complaint" asp-action="GetComplaints">Complaints</a>
+                                }
+
+                                
+                                
+                                
+                            </li>
                         }
                         else
                         {
                             
                         }
+
 
 
 

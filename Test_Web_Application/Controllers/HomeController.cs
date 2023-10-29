@@ -24,23 +24,14 @@ namespace Test_Web_Application.Controllers
             
         {
 
-           //var userObjectJ = HttpContext.Session.GetString("UserObject");
-           // if (!string.IsNullOrEmpty(userObjectJ))
-           // {
-               
-           //     // Proceed with using the deserialized user object.
-           //     var userObject = JsonConvert.DeserializeObject<User>(userObjectJ);
-           //     ViewBag.UserId = userObject.Id;
-           //     ViewBag.UserObject = userObject;
-           // }
-           // else
-           // {
-           //     return RedirectToAction("Index");
-           //     // Handle the case where userObjectJ is null or empty.
-           //     // You might log an error, throw an exception, or take appropriate action.
-           // }
-           
-           
+            var userObjectJon = HttpContext.Session.GetString("UserObject");
+            var userObject = JsonConvert.DeserializeObject<User>(userObjectJon);
+            var UserRole = userObject.Role;
+
+
+            ViewBag.UserRole = UserRole;
+
+
             return View();
         }
 

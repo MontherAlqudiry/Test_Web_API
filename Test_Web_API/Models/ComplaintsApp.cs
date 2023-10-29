@@ -17,7 +17,7 @@ namespace Test_Web_API.Models
         public string File { get; set; }
 
         public int UserId { get; set; }
-        public bool Status { get; set; }
+        public string Status { get; set; } = "Pending";
         [NotMapped]
         [JsonIgnore]
         [ForeignKey("UserId")]

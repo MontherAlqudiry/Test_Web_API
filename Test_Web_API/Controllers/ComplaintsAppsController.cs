@@ -43,21 +43,17 @@ namespace Test_Web_API.Controllers
         }
 
         // GET: api/ComplaintsApps/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ComplaintsApp>> GetComplaintsApp(int id)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ComplaintsApp>>> GetAllComplaintsApp()
         {
-          if (_context.ComplaintsApp == null)
-          {
-              return NotFound();
-          }
-            var complaintsApp = await _context.ComplaintsApp.FindAsync(id);
-
-            if (complaintsApp == null)
+            if (_context.ComplaintsApp == null)
             {
                 return NotFound();
             }
+            //the code wase like this before edition
+            //return await _context.ComplaintsApp.ToListAsync();
 
-            return complaintsApp;
+            return await _context.ComplaintsApp.ToListAsync();
         }
 
         // PUT: api/ComplaintsApps/5
