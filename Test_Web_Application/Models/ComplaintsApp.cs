@@ -21,6 +21,7 @@ namespace Test_Web_Application.Models
         public string Status { get; set; } = "Pending"; 
 
         public int UserId { get; set; }
+        public string UserGmail { get; set; }
         [NotMapped]
 
         [ForeignKey("UserId")]

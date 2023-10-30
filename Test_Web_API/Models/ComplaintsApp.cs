@@ -17,6 +17,7 @@ namespace Test_Web_API.Models
         public string File { get; set; }
 
         public int UserId { get; set; }
+        public string UserGmail { get; set; }
         public string Status { get; set; } = "Pending";
         [NotMapped]
         [JsonIgnore]

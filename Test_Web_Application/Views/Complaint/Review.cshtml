@@ -1,1 +1,95 @@
-﻿
+﻿@model Test_Web_Application.Models.ComplaintsApp
+
+<div class="row   mt-5 me-5 ms-5 mb-0">
+    <div class="col-2"></div>
+    <div class="col-8 h4">Review Complaint </div>
+    <div class="col-2"></div>
+
+</div>
+
+
+<div class="row  mt-5 me-5 ms-5 mb-2">
+    <div class="col-2"></div>
+    <div class="col-8">
+
+
+        <div class="card  shadow border-white rounded-2  p-2 me-2 ms-2 mb-5">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6 text-start ">
+
+                        <div class="row">
+                            <div class="col-12 text-start "><h5 class="text-black">User Id : @Html.DisplayFor(modelItem => Model.UserId)</h5> </div>
+                         
+                        </div>
+
+                        
+                    </div>
+                    <div class="col-6 ">
+
+                        <div class="row">
+                            <div class="col-6 text-end"><h5 class="text-black">User Email : </h5></div>
+                            <div class="col-6 text-start p">@Html.DisplayFor(modelItem => Model.UserGmail)</div>
+                        </div>
+
+                        
+                    </div>
+               </div>
+            </div>
+        </div>
+
+       
+
+        <div class="card  shadow border-white rounded-2  p-3 me-2 ms-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row w-100">
+                            <div class="col-12 "><h5 class="card-title text-black h5">Title : <bdo class="text-black-50 "> @Html.DisplayFor(modelItem => Model.Name)</bdo></div>
+                           
+                    
+                        </div>
+                    </div>
+                    <div class="col-6 text-end mt-1">
+
+                        @if (Model.Status == "Pending")
+                        {
+                            <h6 class="text-info"><b>Pending</b></h6>
+                        }
+                        else if (Model.Status == "Approved")
+                        {
+                            <h6 class="text-success h6">Approved</h6>
+                        }
+                        else if (Model.Status == "Denied")
+                        {
+                            <h6 class="text-danger h6">Denied</h6>
+
+                        }
+
+                    </div>
+
+                </div>
+                <div class="col-12 "><h5 class="card-title text-black h5 mt-2">Type : <bdo class="text-black-50 "> @Html.DisplayFor(modelItem => Model.Type)</bdo></div>
+                    <h5 class="h5 text-black mt-4">Complaint Content:</h5>
+                <p class="card-text me-1 ms-1">@Html.DisplayFor(modelItem => Model.Content)</p>
+                @{
+                    var id = Model.Id;
+                }
+                <div class=" row  text-center  mt-5">
+                    
+                        <div class="col-4 text-center">
+                        <a asp-controller="Complaint" asp-action="EditStatusApprove" asp-route-id="@Model.Id" class="btn btn-outline-success btn-sm rounded-1 border-1 shadow w-50"><b>Approve</b></a>
+                        </div>
+                   
+                    <div class="col-4 text-center  ">
+                        <a asp-controller="Complaint" asp-action="EditStatusDeny" asp-route-id="@Model.Id" class="btn btn-outline-danger btn-sm rounded-1 border-1 shadow w-50  "><b>Deny</b></a>
+                    </div>
+                    <div class="col-4 text-center  ">
+                        <a asp-controller="Complaint" asp-action="GetAllComplaints"  class="btn btn-outline-primary btn-sm rounded-1 border-1 shadow w-50   "><b>Back</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>

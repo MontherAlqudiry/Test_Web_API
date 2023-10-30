@@ -22,42 +22,22 @@ namespace Test_Web_Application.Controllers
             _Client.BaseAddress = baseAddress;
             _logger = logger;
         }
+
         [HttpGet]
-        public  IActionResult Index()
+        public IActionResult Index()
         {
             IList<ComplaintsApp> CompList = new List<ComplaintsApp>();
 
             // Get the user ID from the session
             string userjson = HttpContext.Session.GetString("UserObject");
-            var userobj =JsonConvert.DeserializeObject<User>(userjson);
+            var userobj = JsonConvert.DeserializeObject<User>(userjson);
             int userId = userobj.Id;
 
             //HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "/ComplaintsApps/GetComplaintsApp").Result;
             HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + $"ComplaintsApps/GetComplaintsApp?userId={userId}").Result;
 
 
-            if (response.IsSuccessStatusCode) { 
-            
-                string data =response.Content.ReadAsStringAsync().Result;
-                CompList = JsonConvert.DeserializeObject<List<ComplaintsApp>>(data);  
-
-            }
-
-            return View(CompList);
-        }
-        [HttpGet]
-        public IActionResult GetComplaints()
-        {
-            IList<ComplaintsApp> CompList = new List<ComplaintsApp>();
-
-           
-
-            //HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "/ComplaintsApps/GetComplaintsApp").Result;
-            HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "ComplaintsApps/GetAllComplaintsApp").Result;
-
-
-            if (response.IsSuccessStatusCode)
-            {
+            if (response.IsSuccessStatusCode) {
 
                 string data = response.Content.ReadAsStringAsync().Result;
                 CompList = JsonConvert.DeserializeObject<List<ComplaintsApp>>(data);
@@ -67,30 +47,59 @@ namespace Test_Web_Application.Controllers
             return View(CompList);
         }
 
+        [HttpGet]
+        public IActionResult GetAllComplaints()
+        {
+            IList<ComplaintsApp> CompList = new List<ComplaintsApp>();
+
+
+
+            //HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "/ComplaintsApps/GetComplaintsApp").Result;
+            HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "ComplaintsApps/GetAllComplaintsApp").Result;
+
+            
+
+                if (response.IsSuccessStatusCode)
+                {   
+                    if (response == null)
+                    {
+
+                    return View();
+                    }
+
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    CompList = JsonConvert.DeserializeObject<List<ComplaintsApp>>(data);
+
+
+                }
+
+            return View(CompList);
+        }
+
 
         public IActionResult Create()
-     
-        {
-                 var userObjectJ = HttpContext.Session.GetString("UserObject");
-                 var userObject = JsonConvert.DeserializeObject<User>(userObjectJ);
-                 ViewBag.UserObject = userObject;
-                 ViewBag.UserId = userObject.Id;
 
-           
-           
-            
-           
+        {
+            var userObjectJ = HttpContext.Session.GetString("UserObject");
+            var userObject = JsonConvert.DeserializeObject<User>(userObjectJ);
+            ViewBag.UserObject = userObject;
+            ViewBag.UserId = userObject.Id;
+
+
+
+
+
             return View();
 
 
-      
+
         }
 
         [HttpPost]
-        public async  Task< IActionResult> Create( ComplaintsApp obj )
-            {
+        public async Task<IActionResult> Create(ComplaintsApp obj)
+        {
             try
-            { 
+            {
                 //to save the upload file in wwrootpath
                 string wwwRootPath = _HostEnvironment.WebRootPath;
 
@@ -102,7 +111,7 @@ namespace Test_Web_Application.Controllers
                 string path = Path.Combine(wwwRootPath + "/UserFile/", fileName);
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
-                   await obj.uploadFile.CopyToAsync(fileStream);
+                    await obj.uploadFile.CopyToAsync(fileStream);
                 }
                 string userjson = HttpContext.Session.GetString("UserObject");
                 var userobj = JsonConvert.DeserializeObject<User>(userjson);
@@ -112,16 +121,6 @@ namespace Test_Web_Application.Controllers
 
                 ComplaintsApp newobj = new()
                 {
-                   // Id = obj.Id,
-                   // Name = obj.Name,
-                   // Content = obj.Content,
-                   // Type = obj.Type,
-                   //////// File = fileName,
-                   // UserId = userId,
-                   // Status = obj.Status,
-                   // uploadFile=obj.uploadFile,
-                   // User=obj.User,
-
 
                     Id = obj.Id,
                     Name = obj.Name,
@@ -130,6 +129,7 @@ namespace Test_Web_Application.Controllers
                     File = obj.File,
                     uploadFile = obj.uploadFile,
                     Status = obj.Status,
+                    UserGmail = userobj.Email,
                     UserId = obj.UserId,
                     User = obj.User
                 };
@@ -145,12 +145,12 @@ namespace Test_Web_Application.Controllers
 
                 // Send the JSON content to the Web API controller.
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/problem+json");
-                HttpResponseMessage response =  _Client.PostAsync(_Client.BaseAddress + "ComplaintsApps/PostComplaint", content).Result;
+                HttpResponseMessage response = _Client.PostAsync(_Client.BaseAddress + "ComplaintsApps/PostComplaint", content).Result;
                 string responseContent = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
-                    TempData["SuccessComp"] = "Complain Created successfuly!";
+                    TempData["SuccessComp"] = "Complain Created successfully!";
                     return RedirectToAction("Index");
                 }
             }
@@ -160,15 +160,15 @@ namespace Test_Web_Application.Controllers
                 return View();
             }
 
-                return View();
+            return View();
         }
 
-        public IActionResult Review(int Id) 
+        public IActionResult Review(int Id)
         {
             try
             {
                 ComplaintsApp comp = new();
-                HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "ComplaintsApps/GetComplaintsApp/" + Id).Result;
+                HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "ComplaintsApps/GetComplaintById/" + Id).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     string data = response.Content.ReadAsStringAsync().Result;
@@ -185,29 +185,100 @@ namespace Test_Web_Application.Controllers
             }
 
         }
-        
 
-            [HttpGet]
+
+        [HttpGet]
         public IActionResult Edit(int Id) {
             try
             {
                 ComplaintsApp comp = new();
-                HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "ComplaintsApps/GetComplaintsApp/" + Id).Result;
+                HttpResponseMessage response = _Client.GetAsync(_Client.BaseAddress + "ComplaintsApps/GetComplaintById/" + Id).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     string data = response.Content.ReadAsStringAsync().Result;
                     comp = JsonConvert.DeserializeObject<ComplaintsApp>(data);
                 }
-              
+
                 return View(comp);
             }
             catch (Exception ex)
             {
                 TempData["Error"] = ex.Message;
                 return View();
-               
+
             }
         }
+
+        
+        public async Task<IActionResult> EditStatusApprove(int Id)
+        {
+            try
+            {
+
+                var data = new { id = Id }; // Wrap the Id in a JSON object with a key
+                StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await _Client.PostAsync(_Client.BaseAddress + $"ComplaintsApps/ChangeComplaintsAppStutusApprove/{Id}", content);
+
+
+                //string data = JsonConvert.SerializeObject(Id.ToString());
+                //Console.WriteLine("Data: " + data);
+                //StringContent content = new(data, Encoding.UTF8, "application/problem+json");
+                //HttpResponseMessage response =  _Client.PostAsync(_Client.BaseAddress + "ComplaintsApps/ChangeComplaintsAppStutusApprove/", content).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    
+                    return RedirectToAction("GetAllComplaints", "Complaint");
+                    
+
+                }
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return View();
+
+            }
+
+        }
+
+       
+        public async Task< IActionResult> EditStatusDeny(int Id)
+        {
+            try
+            {
+
+                var data = new { id = Id }; // Wrap the Id in a JSON object with a key
+                StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await _Client.PostAsync(_Client.BaseAddress + $"ComplaintsApps/ChangeComplaintsAppStutusDeny/{Id}", content);
+
+
+                //string data = JsonConvert.SerializeObject(Id.ToString());
+                //Console.WriteLine("Data: " + data);
+                //StringContent content = new(data, Encoding.UTF8, "application/problem+json");
+                //HttpResponseMessage response =  _Client.PostAsync(_Client.BaseAddress + "ComplaintsApps/ChangeComplaintsAppStutusApprove/", content).Result;
+                if (response.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("GetAllComplaints", "Complaint");
+
+
+                }
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return View();
+
+            }
+
+        }
+
 
 
     }

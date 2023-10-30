@@ -19,30 +19,44 @@ namespace Test_Web_API.Controllers
         private readonly ApplicationDbContext _context;
         private readonly ILogger<ComplaintsAppsController> logger;
 
-        public ComplaintsAppsController(ApplicationDbContext context , ILogger<ComplaintsAppsController> _logger)
+        public ComplaintsAppsController(ApplicationDbContext context, ILogger<ComplaintsAppsController> _logger)
         {
             _context = context;
             _logger = logger;
-           
-        }
-        
 
-        // GET: api/ComplaintsApps
+        }
+
+
+        // GET: api/ComplaintsApps/Get the complaints of user (for user role and it's connected with userid)
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ComplaintsApp>>> GetComplaintsApp(string userId)
         {
-          if (_context.ComplaintsApp == null)
-          {
-              return NotFound();
-          }
+            if (_context.ComplaintsApp == null)
+            {
+                return NotFound();
+            }
             //the code wase like this before edition
             //return await _context.ComplaintsApp.ToListAsync();
 
             return await _context.ComplaintsApp.Where(h => h.UserId.ToString() == userId).ToListAsync();
-           
+
         }
 
-        // GET: api/ComplaintsApps/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ComplaintsApp>> GetComplaintById(int id)
+        {
+            var complaint = await _context.ComplaintsApp.FindAsync(id);
+
+            if (complaint == null)
+            {
+                return NotFound(); // Return 404 Not Found if no complaint with the given ID is found
+            }
+
+            return Ok(complaint);
+        }
+
+
+        // GET: api/ComplaintsApps/5//get ALL the Complaints of all USER this method for Admin Role
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ComplaintsApp>>> GetAllComplaintsApp()
         {
@@ -53,7 +67,47 @@ namespace Test_Web_API.Controllers
             //the code wase like this before edition
             //return await _context.ComplaintsApp.ToListAsync();
 
-            return await _context.ComplaintsApp.ToListAsync();
+            return await _context.ComplaintsApp.Where(h => h.Status =="Pending").OrderBy(h => h.UserId).ToListAsync();
+        }
+
+
+        [HttpPost("{Id}")]
+        public async Task<IActionResult> ChangeComplaintsAppStutusApprove(int Id)
+        {
+      
+            ComplaintsApp complaint =await _context.ComplaintsApp.FindAsync(Id);
+            if (complaint == null)
+            {
+                return NotFound(); // Handle the case where the complaint is not found.
+            }
+            //var UserSessionJson = HttpContext.Session.GetString("UserObject");
+            //var UserSessionObj = JsonConvert.DeserializeObject<User>(UserSessionJson);
+
+            complaint.Status = "Approved";
+            await _context.SaveChangesAsync();
+                // Successful response
+            
+            return Ok();
+
+            
+        }
+
+        [HttpPost("{id}")]
+        public async Task<IActionResult> ChangeComplaintsAppStutusDeny(int Id)
+        {
+            ComplaintsApp complaint = await _context.ComplaintsApp.FindAsync(Id);
+            if (complaint == null)
+            {
+                return NotFound(); // Handle the case where the complaint is not found.
+            }
+            //var UserSessionJson = HttpContext.Session.GetString("UserObject");
+            //var UserSessionObj = JsonConvert.DeserializeObject<User>(UserSessionJson);
+
+            complaint.Status = "Denied";
+            await _context.SaveChangesAsync();
+            // Successful response
+
+            return Ok();
         }
 
         // PUT: api/ComplaintsApps/5

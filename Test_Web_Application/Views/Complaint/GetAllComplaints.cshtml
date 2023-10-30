@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Test_Web_Application.Models.ComplaintsApp>
+
+@{
+    //var UserId = ViewBag.UserId;
+}
+
+<div class="row m-5 ">
+    <div class="col-1"></div>
+
+    <div class="col-10 text-start"><h1 class="me-5 ms-2 h4 fw-bold">Users Complaints</h1></div>
+  
+    <div class="col-1"></div>
+</div>
+
+
+<div class="row me-5 ms-5 ">
+    <div class="col-1"></div>
+    <div class="col-10">
+        @if (@Model.Count() == 0)
+        {
+             <table class="table table-bordered table-striped  shadow rounded-1 mb-5 ">
+            <thead>
+                <tr>
+                    <th class="text-center h5">
+                        User Id
+                    </th>
+                    <th class="text-center h5">
+                        User Name
+                    </th>
+                    <th class="text-center h5">
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                   
+                    <th class="text-center h5">
+                        @Html.DisplayNameFor(model => model.Content)
+                    </th>
+                   
+
+                    <th class="text-center h4"><b><i class="bi bi-view-list "></i></b></th>
+                </tr>
+            </thead>
+            </table>
+            <div class="row">
+                <div class="col-6 text-end mt-5"> <img class="align-items-center  rounded-5 w-50 " src="@("~/Image/GetallComplaints_Image1.png")" asp-append-version="true " /></div>
+                <div class="col-4 text-start align-self-center mt-5"> <p class="h5 mt-5 text-center">There is no complaints Right now, but if there will provide Right here.</p></div>
+                <div class="col-2 text-end"></div>
+            </div>
+           
+           
+        }else{
+        <table class="table table-bordered table-striped  shadow rounded-1 ">
+            <thead>
+                <tr>
+                    <th class="text-center h5">
+                        User Id
+                    </th>
+                    <th class="text-center h5">
+                        User Name
+                    </th>
+                    <th class="text-center h5">
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                   
+                    <th class="text-center h5">
+                        @Html.DisplayNameFor(model => model.Content)
+                    </th>
+                   
+
+                    <th class="text-center h4"><b><i class="bi bi-view-list "></i></b></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                   
+                    
+                    
+                        <tr>
+                            <td class="h6 text-center align-middle text-black">
+                            @Html.DisplayFor(modelItem => item.UserId)
+                        </td>
+                        <td class="h6 text-center align-middle">
+                            @Html.DisplayFor(modelItem => item.UserGmail)
+                        </td>
+                        <td class="h6 text-center align-middle">
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                       
+                        <td class=" text-center align-middle">
+                            @Html.DisplayFor(modelItem => item.Content)
+                        </td>
+                        
+
+                        <td class="h6 text-center align-middle">
+                            <div class=" btn-group rounded-1 " role="group">
+                                <a asp-controller="Complaint" asp-action="Review" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm rounded-1 border-1 shadow text-black">Review</a>
+
+
+                            </div>
+                        </td>
+                    </tr>
+                    
+                }
+            </tbody>
+        </table>}
+    </div>
+    <div class="col-1"></div>
+</div>
