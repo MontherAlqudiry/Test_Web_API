@@ -7,7 +7,6 @@
 
 </div>
 
-
 <div class="row  mt-5 me-5 ms-5 mb-2">
     <div class="col-2"></div>
     <div class="col-8">
@@ -70,12 +69,18 @@
 
                 </div>
                 <div class="col-12 "><h5 class="card-title text-black h5 mt-2">Type : <bdo class="text-black-50 "> @Html.DisplayFor(modelItem => Model.Type)</bdo></div>
-                    <h5 class="h5 text-black mt-4">Complaint Content:</h5>
-                <p class="card-text me-1 ms-1">@Html.DisplayFor(modelItem => Model.Content)</p>
-                @{
-                    var id = Model.Id;
-                }
-                <div class=" row  text-center  mt-5">
+                <h5 class="h5 text-black mt-5">User Uploaded Files :</h5>
+                <div class="row mt-4">
+                    <div class="col-2 "></div>
+                <div class="col-4 "> @Html.DisplayFor(modelItem => Model.File)</div>
+                    <div class="col-4 text-end "><a class="text-decoration-none  text-black h6 " download href="~/UserFile/@Html.DisplayFor(modelItem => Model.File)"><b>Download</b></a> </div>
+                    <div class="col-2 "></div>
+                </div>
+                    <h5 class="h5 text-black mt-5">Complaint Content</h5>
+                <p class="card-text me-2 ms-2">@Html.DisplayFor(modelItem => Model.Content)</p>
+                   
+
+                <div class=" row  text-center  mt-5 mb-2">
                     
                         <div class="col-4 text-center">
                         <a asp-controller="Complaint" asp-action="EditStatusApprove" asp-route-id="@Model.Id" class="btn btn-outline-success btn-sm rounded-1 border-1 shadow w-50"><b>Approve</b></a>

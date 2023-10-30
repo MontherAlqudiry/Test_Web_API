@@ -47,6 +47,8 @@ namespace Test_Web_Application.Controllers
             return View(CompList);
         }
 
+
+
         [HttpGet]
         public IActionResult GetAllComplaints()
         {

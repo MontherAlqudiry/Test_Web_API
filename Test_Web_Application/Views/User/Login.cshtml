@@ -3,20 +3,20 @@
 {
     <h2 class="h5 text-center mt-5">@TempData["successRigestration"]</h2>
 }
-<div class="row me-5 ms-5 mt-5">
+@* <div class="row me-5 ms-5 mt-5">
     <div class="col-2"></div>
     <div class="col-8 text-end"><h1 class="h4 ">Login</h1></div>
     <div class="col-2"></div>
-</div>
+</div> *@
 
 
-<div class="row mt-1 mb-5 me-5 ms-5">
+<div class="row mt-5 mb-1 me-5 ms-5">
 
     <div class="col-2 align-items-baseline align-self-baseline ">
-        @*  <img class="align-items-center opacity-50 rounded-5 w-50" src="@("~/Image/home_imge3.png")" asp-append-version="true " /> *@
+        @* <img class="align-items-end opacity-50 rounded-5 w-50" src="@("~/Image/home_imge3.png")" asp-append-version="true " /> *@
     </div>
 
-    <div class="col-8 card shadow-lg rounded-5 p-0 m-0 border-white ">
+    <div class="col-8 card shadow-lg rounded-5 p-0 m-0 border-white  ">
 
         <div class="row">
 
@@ -28,16 +28,16 @@
                 <form asp-action="Login">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    
+                    <h1 class="h4 text-black text-end ">Login</h1>
                     <div class="form-group mt-3">
                         <label asp-for="Email" class="control-label h6 text-black">User Name</label>
-                        <input asp-for="Email" placeholder="User@example.com" value="admin@gmail.com" class="form-control shadow beige_color rounded-1 " />
+                        <input asp-for="Email" placeholder="User@example.com"  class="form-control shadow beige_color rounded-1 " />
                         <span asp-validation-for="Email" class="text-black-50  h6 "></span>
                     </div>
                     <div class="form-group mt-3">
                         <label asp-for="Password" class="control-label h6 text-black" ></label>
                        
-                            <input asp-for="Password"  value="aaaaaaaa"class="form-control shadow beige_color rounded-1 m_s" />
+                            <input asp-for="Password" class="form-control shadow beige_color rounded-1 m_s" />
                           
                         
                         <span asp-validation-for="Password" class="text-black-50  h6"></span>
