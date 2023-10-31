@@ -41,12 +41,45 @@
 
                 <div class="form-group mb-4">
             <label asp-for="Content" class="control-label h5"></label>
-                <textarea asp-for="Content" class="form-control shadow text-black beige_color" rows="5" placeholder=""></textarea>
+                <textarea asp-for="Content" class="form-control shadow text-black beige_color" rows="6" placeholder=""></textarea>
             <span asp-validation-for="Content" class="text-danger rounded-1"></span>
+            </div>
+            <div class="card shadow border-white rounded-1 mb-4 pt-3 pe-2 ps-2 pb-2">
+            <div class="row me-1 ms-1 ">
+               
+                    <div class="col-8 align-items-center align-self-center"><h4 class="h5 text-black">Add Mental Demand </h4></div>
+                    <div class="col-4 mb-1 text-end">
+                       <i id ="toggleDivButton" class="bi bi-plus-square-fill   text-black"></i>
+                       
+                    </div>
                 </div>
+            </div>
+
+            <div class="form-group mb-4" id="demandOneDiv" style="display: none;">
+                <label asp-for="demandOneText" class="control-label h5">Complaint Content </label>
+                <textarea asp-for="demandOneText" class="form-control shadow text-black beige_color" rows="6" placeholder=""></textarea>
+                <span asp-validation-for="demandOneText" class="text-danger rounded-1"></span>
+            </div>
+            <div class="card shadow border-white rounded-1 mb-4 pt-3 pe-2 ps-2 pb-2">
+                <div class="row me-1 ms-1 ">
+
+                    <div class="col-8 align-items-center align-self-center"><h4 class="h5 text-black">Add assurance Demand </h4></div>
+                    <div class="col-4 mb-1 text-end">
+                        <i id="toggleDivButton" class="bi bi-plus-square-fill   text-black"></i>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-4" id="demandOneDiv" style="display: none;">
+                <label asp-for="demandOneText" class="control-label h5">Complaint Content </label>
+                <textarea asp-for="demandOneText" class="form-control shadow text-black beige_color" rows="6" placeholder=""></textarea>
+                <span asp-validation-for="demandOneText" class="text-danger rounded-1"></span>
+            </div>
+
 
             <div class="form-group mb-5">
-                <label asp-for="uploadFile" class="control-label h5"></label>
+                <label asp-for="uploadFile" class="control-label h5">Upload File</label>
                 <input asp-for="uploadFile"  class="form-control shadow text-black fw-bolder beige_color" >
                 <span asp-validation-for="uploadFile" class="text-danger rounded-1"></span>
             </div>
@@ -71,3 +104,17 @@
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var toggleDivButton = document.getElementById("toggleDivButton");
+        var demandOneDiv = document.getElementById("demandOneDiv");
+
+        toggleDivButton.addEventListener("click", function () {
+            if (demandOneDiv.style.display === "none") {
+                demandOneDiv.style.display = "block";
+            } else {
+                demandOneDiv.style.display = "none";
+            }
+        });
+    });
+</script>

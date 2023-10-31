@@ -31,21 +31,28 @@
 
         var userId = Context.Session.GetString("UserId");
         var UserRole = Context.Session.GetString("UserRole");
-      
+
         if (userId == null)
         {
             // Context.Response.Redirect("/Login");
 
         }
 
-       
+
     }
 
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow shadow mb-3 p-4  ">
             <div class="container-fluid bg-white">
-                <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index"><h3 class="h3">Demo</h3></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                @if (@userId != null)
+                {
+                    <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index"><h3 class="h3">Demo</h3></a>
+                }
+                else
+                {
+                    <h3 class="h3 ">Demo</h3>
+                        }
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -84,12 +91,15 @@
 
                      @if (@userId != null)
                         {
-                    <a asp-controller="User" asp-action="Logout" class="nav-link text-dark me-4 ms-2">Logout</a>
-                    }
-                    else{
+                        <a asp-controller="User" asp-action="Info" asp-route-Id="@userId" class="navbar-brand rounded-5 me-3 ms-2 text-end"> <img class="img-fluid  rounded-5 rounded-circle  " style="width:20%" src="@("~/Image/person_default_image2.png")" alt="User Image" asp-append-version="true" /></a>
+                            <a asp-controller="User" asp-action="Logout" class="nav-link text-dark me-4 ms-2">Logout</a>
                         
-                        <a asp-controller="User" asp-action="Login" class="nav-link text-dark me-4 ms-2">Login</a>
-                        <a asp-controller="User" asp-action="Rigester" class="nav-link text-dark me-2 ms-2 ">Register</a>
+                        }
+                    else
+                        {
+                      
+                            <a asp-controller="User" asp-action="Login" class="nav-link text-dark me-4 ms-2">Login</a>
+                            <a asp-controller="User" asp-action="Rigester" class="nav-link text-dark me-2 ms-2 ">Register</a>
                         }
 
                 </div>

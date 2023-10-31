@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Test_Web_API.Data;
 
@@ -10,9 +11,11 @@ using Test_Web_API.Data;
 namespace Test_Web_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231031100754_addDemandOneTable")]
+    partial class addDemandOneTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,16 +152,26 @@ namespace Test_Web_API.Migrations
                     b.Property<int>("ComplaintId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("demandOneText")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ComplaintId");
+
                     b.ToTable("demandOne");
+                });
+
+            modelBuilder.Entity("Test_Web_API.Models.demandOne", b =>
+                {
+                    b.HasOne("Test_Web_API.Models.ComplaintsApp", "ComplaintsApp")
+                        .WithMany()
+                        .HasForeignKey("ComplaintId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ComplaintsApp");
                 });
 #pragma warning restore 612, 618
         }

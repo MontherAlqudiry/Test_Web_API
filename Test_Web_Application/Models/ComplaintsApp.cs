@@ -22,11 +22,11 @@ namespace Test_Web_Application.Models
 
         public int UserId { get; set; }
         public string UserGmail { get; set; }
+        public string demandOneText { get; set; }
         [NotMapped]
 
         [ForeignKey("UserId")]
-        public User User { get; set; }
-
+        public User User { get; set; }      
 
     }
 }

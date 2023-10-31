@@ -123,7 +123,6 @@ namespace Test_Web_Application.Controllers
 
                 ComplaintsApp newobj = new()
                 {
-
                     Id = obj.Id,
                     Name = obj.Name,
                     Content = obj.Content,
@@ -133,22 +132,42 @@ namespace Test_Web_Application.Controllers
                     Status = obj.Status,
                     UserGmail = userobj.Email,
                     UserId = obj.UserId,
-                    User = obj.User
+                    User = obj.User,
+                
+                    demandOneText=obj.demandOneText
+
+                   
                 };
                 newobj.File = fileName;
                 newobj.User = userobj;
+               
 
-
-                //string data = JsonConvert.SerializeObject(newobj);
-                //StringContent content = new(data, Encoding.UTF8, "application/json");
-                //HttpResponseMessage response = _Client.PostAsync(_Client.BaseAddress + "ComplaintsApps/PostComplaint", content).Result;
-
-                string json = JsonConvert.SerializeObject(newobj);
+                string ObjJson = JsonConvert.SerializeObject(newobj);
 
                 // Send the JSON content to the Web API controller.
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/problem+json");
+                StringContent content = new StringContent(ObjJson, Encoding.UTF8, "application/problem+json");
                 HttpResponseMessage response = _Client.PostAsync(_Client.BaseAddress + "ComplaintsApps/PostComplaint", content).Result;
                 string responseContent = await response.Content.ReadAsStringAsync();
+
+                ComplaintsApp compresp = JsonConvert.DeserializeObject<ComplaintsApp>(responseContent);
+
+                //create demand_one 
+                demandOne dOne = new();
+                dOne.demandOneText = compresp.demandOneText;
+                dOne.ComplaintId = compresp.Id;
+                dOne.ComplaintsApp=compresp;
+                dOne.UserId=compresp.UserId;
+                string dOneJson= JsonConvert.SerializeObject(dOne);
+                // Send the JSON content to the Web API controller.
+                StringContent D1content = new StringContent(dOneJson, Encoding.UTF8, "application/problem+json");
+                HttpResponseMessage D1response = _Client.PostAsync(_Client.BaseAddress + "ComplaintsApps/CreateDemandOne", D1content).Result;
+                string D1responseContent = await D1response.Content.ReadAsStringAsync();
+
+
+
+
+
+
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -280,6 +299,9 @@ namespace Test_Web_Application.Controllers
             }
 
         }
+
+
+        
 
 
 

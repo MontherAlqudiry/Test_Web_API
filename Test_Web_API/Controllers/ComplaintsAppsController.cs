@@ -142,7 +142,7 @@ namespace Test_Web_API.Controllers
 
         // POST: api/ComplaintsApps
         [HttpPost]
-        public async Task<ActionResult<ComplaintsApp>> PostComplaint([FromBody]ComplaintsApp complaintsApp)
+        public async Task<ActionResult<ComplaintsApp>> PostComplaint(ComplaintsApp complaintsApp)
         {
           if (_context.ComplaintsApp == null)
           {
@@ -177,6 +177,26 @@ namespace Test_Web_API.Controllers
 
             return NoContent();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateDemandOne(demandOne demand) {
+
+            if (_context.ComplaintsApp == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.demandOne'  is null.");
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.demandOne.Add(demand);
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        
+        }
+
 
         private bool ComplaintsAppExists(int id)
         {

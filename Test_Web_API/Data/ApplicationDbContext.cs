@@ -21,11 +21,12 @@ namespace Test_Web_API.Data
 
        
         public DbSet<Test_Web_API.Models.UserLogin>? UserLogin { get; set; }
+        public DbSet<Test_Web_API.Models.demandOne>? demandOne { get; set; }
 
-       
+
         //public DbSet<Test_Web_API.Models.UplaodFile>? UplaodFile { get; set; }
 
-       
-       
+
+
     }
 }

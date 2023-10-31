@@ -1,0 +1,69 @@
+﻿@model Test_Web_Application.Models.User
+
+@{
+    
+
+
+}
+
+<div class="row me-5 ms-5 mt-5 mb-5">
+    <div class="col-md-1 ">@* <img class="align-items-end opacity-50 rounded-5 w-50" src="@("~/Image/home_imge3.png")" asp-append-version="true " /> *@</div>
+    <div class="col-md-10 text-center">
+        <h1 class="h4 mt-4 mb-4 ">Hey @Model.Firstname,</h1>
+        <img class="w-25 rounded-circle shadow" src="@("~/Image/User_image_test.png") " asp-append-version="true"/>
+    </div>
+    <div class="col-md-1">
+       @*  <img class="align-items-center  rounded-5 opacity-75 w-75" src="@("~/Image/home_image2.png")" asp-append-version="true " /> *@
+
+    </div>
+</div>
+
+<div class="row me-5 ms-5  ">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+        
+        <form asp-action="InfoPut" asp-route-id="@Model.Id">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group mb-3">
+                <label asp-for="Firstname" class="control-label h6 "></label>
+                <input asp-for="Firstname" class="form-control shadow rounded-1 bg-white border-1 border-black text-black mb-2" />
+                <span asp-validation-for="Firstname" class="text-black-50 h6 mt-2"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Lastname" class="control-label h6 "></label>
+                <input asp-for="Lastname" class="form-control shadow rounded-1 bg-white border-1 border-black text-black mb-2" />
+                <span asp-validation-for="Lastname" class="text-black-50 h6 mt-2"></span>
+            </div>
+            <div class="form-group mb-5">
+                <label asp-for="Email" class="control-label h6 "></label>
+                <input asp-for="Email" class="form-control shadow rounded-1 bg-white border-1 border-black  text-black mb-2" />
+                <span asp-validation-for="Email" class="text-black-50 h6 mt-2 "></span>
+            </div>
+            <hr />
+            <h1 class="h4">Change Password </h1>
+            <div class="form-group mt-5 mb-3">
+                <label asp-for="Password" class="control-label h6 "></label>
+                <input asp-for="Password" class="form-control shadow rounded-1 bg-white border-1 border-black  text-black mb-2" />
+                <span asp-validation-for="Password" class="text-black-50 h6 mt-2"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ConfirmPassword" class="control-label h6 "></label>
+                <input asp-for="ConfirmPassword" class="form-control shadow rounded-1 bg-white border-1 border-black  text-black mb-2" />
+                <span asp-validation-for="ConfirmPassword" class="text-black-50 h6 "></span>
+            </div>
+           
+            <div class="form-group text-end mt-5 mb-5">
+                <input type="submit" value="Save" class="btn btn-outline-primary h6 shadow rounded-1 border-2 border-black  " />
+            </div>
+        </form>
+        </div>
+        <div class="col-md-2"></div>
+</div>
+    
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

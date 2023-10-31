@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Test_Web_API.Data;
 using Test_Web_API.Models;
 
@@ -77,7 +79,33 @@ namespace Test_Web_API.Controllers
 
         }
 
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> Info(int Id)
+        {
+            User userInfo =await _context.User.FindAsync(Id);
 
+            if (userInfo == null)
+            {
+                return NotFound(); // Handle the case where the complaint is not found.
+            }
+
+
+            return Ok(userInfo);
+        }
+
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> UpdateUser(int Id,User user) {
+            if (Id != user.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(user).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+
+        }
 
     }
 }

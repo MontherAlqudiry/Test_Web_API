@@ -28,15 +28,22 @@
         <div class=" col-12 col-md-5 mx-auto mt-5 mb-2  ">
         <img class="align-items-center  rounded-5 " src="@("~/Image/home_image1.png")" asp-append-version="true " />
         </div>
-
+     
         <div class=" col-12 col-md-6 mx-auto text-center  mt-5 mb-2 ">
             <div class=" mb-3 display-6 h4 mb-2"><b>Demo</b> Online Complaint Management System </div>
 
             <div class="m-2 text-secondary mb-5"><p >Welcome to our online Complaint Management System, where your grievances find a platform to be heard. Share your experiences, report issues, and collaborate for resolutions. Your feedback is our driving force!</p> </div>
                 <div class="row mt-5" >
                     <div class="col-2"></div>
-
-                    <div class="col-8"><a  asp-area="" asp-controller="Complaint" asp-action="Create" class="btn btn-outline-primary mx-1 border-1 rounded-1 shadow"> Complain Now</a></div>
+                    @if (UserRole == "admin")
+                    {
+                        <div class="col-8"><a asp-area="" asp-controller="Complaint" asp-action="GetAllComplaints" class="btn btn-outline-primary mx-1 border-1 rounded-1 shadow"> Review Now</a></div>
+                    }
+                    else if (UserRole == "user")
+                    { 
+                        <div class="col-8"><a  asp-area="" asp-controller="Complaint" asp-action="Create" class="btn btn-outline-primary mx-1 border-1 rounded-1 shadow"> Complain Now</a></div>
+                    }
+                   
                     <div class="col-2"></div>
               
                 </div>
