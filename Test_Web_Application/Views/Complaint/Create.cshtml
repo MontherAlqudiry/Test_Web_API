@@ -5,17 +5,32 @@
 }
 
 
-    <div class="row m-5">
+<div class="row m-5 columns">
     <div class="col-2"></div>
-    <div class="col-8 col-md-8 "><h4 class="">Create New Complaint</h4></div>
+    <div class="col-5 col-md-5" id="column1" ><h4 class="">Create New Complaint</h4></div>
+   
+    <div class="col-5 col-md-5 " id="column2">
+
+        <div class="row " id="btnsRow">
+
+            <div class="col-1 ">
+                <a class="btn btn-outline-primary border-1 border-black btn-sm pe-2 ps-2 pt-0 pb-0 text-center h6 rounded-1 shadow " id="ENbutton" >EN</a> </div>
+            <div class="col-1  ">
+                <a class="btn btn-outline-primary border-1 border-black btn-sm pe-2 ps-2 pt-0 pb-0 text-center h6 rounded-1 shadow " id="ARbutton">AR </a>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-2"></div>
    @*  <div class="col-6 col-md-6  text-end "> <img class="p-0 " src="@("~/Image/Create_Image.png")" asp-append-version="true " /></div>
       *@   
  
     
     </div>
+   
 
-
-    <div class=" row  align-middle me-5 ms-5 ">
+   <div class=" row  align-middle me-5 ms-5 ">
         <div class="col-2"></div>
         <div class="col-8 ">
         <form asp-action="Create" enctype="multipart/form-data">
@@ -25,14 +40,14 @@
                 <input asp-for="UserGmail" type="hidden" value="@User.Email" class="form-control shadow rounded-1 text-black beige_color" />
                     <div class="col-6">
                         <div class="form-group">
-                    <label asp-for="Name" class="control-label text-black h5"></label>
+                    <label asp-for="Name" id="Title" class="control-label text-black h5 ">Title</label>
                         <input asp-for="Name" class="form-control shadow rounded-1 text-black beige_color" />
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-6 "> 
                         <div class="form-group">
-                    <label asp-for="Type" class="control-label text-black h5"></label>
+                    <label asp-for="Type" id="Type" class="control-label text-black h5"></label>
                         <input asp-for="Type" class="form-control shadow rounded-1 text-black beige_color" />
                             <span asp-validation-for="Type" class="text-danger"></span>
                         </div>
@@ -40,17 +55,18 @@
                 </div>
 
 
-                <div class="form-group mb-4">
-            <label asp-for="Content" class="control-label h5"></label>
+            <div class="form-group mb-4">
+            <label asp-for="Content" id="Content" class="control-label h5"></label>
                 <textarea asp-for="Content" class="form-control shadow text-black beige_color" rows="6" placeholder=""></textarea>
             <span asp-validation-for="Content" class="text-danger rounded-1"></span>
             </div>
-            <div class="card shadow border-white rounded-1 mb-4 pt-3 pe-2 ps-2 pb-2">
+            <h5 class="h5 text-black mt-4 mb-2 " id="DemandsTitle">Demands</h5>
+            <div class="card shadow border-white rounded-1 mb-3 pt-3 pe-2 ps-2 pb-2">
             <div class="row me-1 ms-1 ">
                
-                    <div class="col-8 align-items-center align-self-center"><h4 class="h5 text-black">Add Mental Demand </h4></div>
+                    <div class="col-8 align-items-center align-self-center"><h4 class="h6 text-black" id="demandone">Add Mental Demand </h4></div>
                     <div class="col-4 mb-1 text-end">
-                       <i id ="toggleDivOneButton" class="bi bi-plus-square-fill   text-black"></i>
+                       <i id ="toggleDivOneButton"  class="bi bi-plus-square-fill   text-black"></i>
                        
                     </div>
                 </div>
@@ -65,10 +81,10 @@
 
 
 
-            <div class="card shadow border-white rounded-1 mb-4 pt-3 pe-2 ps-2 pb-2">
+            <div class="card shadow border-white rounded-1 mb-3 pt-3 pe-2 ps-2 pb-2">
                 <div class="row me-1 ms-1 ">
 
-                    <div class="col-8 align-items-center align-self-center"><h4 class="h5 text-black">Add assurance Demand </h4></div>
+                    <div class="col-8 align-items-center align-self-center"><h4 class="h6 text-black" id="demandtwo">Add assurance Demand </h4></div>
                     <div class="col-4 mb-1 text-end">
                         <i id="toggleDivButtonTwo" class="bi bi-plus-square-fill   text-black"></i>
 
@@ -81,17 +97,26 @@
                 <textarea asp-for="demandTwoText" class="form-control shadow text-black beige_color" rows="6" placeholder=""></textarea>
                 <span asp-validation-for="demandTwoText" class="text-danger rounded-1"></span>
             </div>
+            <div class="card shadow border-white rounded-1 mb-4 pt-3 pe-2 ps-2 pb-2">
+                <div class="row me-1 ms-1 ">
 
+                    <div class="col-8 align-items-center align-self-center"><h4 class="h6 text-black" id="anotherdemands">Add Another Demand </h4></div>
+                    <div class="col-4 mb-1 text-end">
+                        <i id="toggleDivOneButton" class="bi bi-plus-square-fill   text-black"></i>
+
+                    </div>
+                </div>
+            </div>
 
             <div class="form-group mb-5">
-                <label asp-for="uploadFile" class="control-label h5">Upload File</label>
+                <label asp-for="uploadFile" id="uploadFile" class="control-label h5">Upload File</label>
                 <input asp-for="uploadFile"  class="form-control shadow text-black fw-bolder beige_color" >
                 <span asp-validation-for="uploadFile" class="text-danger rounded-1"></span>
             </div>
 
-               <div class="row">
+               <div class="row mb-5 mt-2">
                 <div class="form-group col-6">
-                    <input type="submit" value="Create" class="btn btn-primary rounded-1 shadow green_color" />
+                    <input type="submit" value="Create" id="Create" class="btn btn-primary rounded-1 shadow green_color" />
             </div> 
             <div class="col-6 text-end">
                     <a asp-action="Index" class="btn border-2 rounded-1 shadow" style="border-color:#11393B;color:#11393B ">Back to List</a>
@@ -105,8 +130,86 @@
   
     </div>
     <div class="col-2"></div>
+
+   
 </div>
-    @section Scripts {
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+       // var columnsContainer = document.querySelector('.columns');
+        var btnsRow = document.getElementById("btnsRow");
+        var enButton = document.getElementById("ENbutton");
+        var arButton = document.getElementById("ARbutton");
+        var TitleLabel = document.getElementById("Title");
+        var typeLabel = document.getElementById("Type");
+        var DemandsTitle = document.getElementById("DemandsTitle");
+        var Content = document.getElementById("Content");
+        var uploadFile = document.getElementById("uploadFile");
+        var Content = document.getElementById("Content");
+        var Create = document.getElementById("Create");
+        var DemandOne = document.getElementById("demandone");
+        var DemandTwo = document.getElementById("demandtwo");
+        var AnotherDemand = document.getElementById("anotherdemands");
+
+
+
+        enButton.addEventListener("click", function () {
+           // columnsContainer.insertBefore(column1, column2);
+            TitleLabel.innerText = "Title";
+            typeLabel.innerText = "Type";
+            Content.innerText = "Discription"
+            DemandsTitle.innerText="Demands"
+            uploadFile.innerText = "Upload File"
+            Create.innerText = "Create"
+            DemandOne.innerText = "ADD MENTAL DEMAND"
+            DemandTwo.innerText = "ADD ASSURANCE DEMAND"
+            AnotherDemand.innerText = "ADD Another DEMANDs"
+
+            TitleLabel.classList.remove("float-end");
+            typeLabel.classList.remove("float-end");
+            Content.classList.remove("float-end");
+            DemandsTitle.classList.remove("text-end");
+            uploadFile.classList.remove("float-end");
+            btnsRow.classList.remove("text-start")
+
+        });
+
+        arButton.addEventListener("click", function () {
+           // columnsContainer.insertBefore(column2, column1);
+            TitleLabel.innerText = "العنوان";
+            typeLabel.innerText = "النوع";
+            Content.innerText = "الشكوى"
+            DemandsTitle.innerText = "إضافة شكوى"
+            uploadFile.innerText="تحميل ملف"
+            Create.innerText = "إضافة"
+            DemandOne.innerText="إضافة شكوى صحية"
+            DemandTwo.innerText="إضافه شكوى تأمين"
+            AnotherDemand.innerText="إضافة شكاوي ’أخرى"
+
+            TitleLabel.classList.add("float-end");
+            typeLabel.classList.add("float-end");
+            Content.classList.add("float-end");
+            DemandsTitle.classList.add("text-end");
+            uploadFile.classList.add("float-end");
+            btnsRow.classList.add("text-start")
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
 <script>

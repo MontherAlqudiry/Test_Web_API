@@ -7,7 +7,7 @@
 
 </div>
 
-<div class="row  mt-5 me-5 ms-5 mb-2">
+<div class="row  m-5">
     <div class="col-2"></div>
     <div class="col-8">
 
@@ -78,18 +78,28 @@
                 </div>
                     <h5 class="h5 text-black mt-5">Complaint Content</h5>
                 <p class="card-text me-2 ms-2">@Html.DisplayFor(modelItem => Model.Content)</p>
-                   
 
-                <div class=" row  text-center  mt-5 mb-2">
+                @if(Model.demandOneText !=null){
+                <h5 class="h5 text-black mt-5">Demand One</h5>
+                <p class="card-text me-2 ms-2">@Html.DisplayFor(modelItem => Model.demandOneText)</p>
+                }
+
+                @if (Model.demandTwoText != null)
+                {
+                    <h5 class="h5 text-black mt-5">Demand Two</h5>
+                    <p class="card-text me-2 ms-2">@Html.DisplayFor(modelItem => Model.demandTwoText)</p>
+                }
+                <hr class="mx-4 mt-5 text-black green_color" />
+                <div class=" row  text-center  mt-4 mb-2">
                     
-                        <div class="col-4 text-center">
+                        <div class="col-12 col-md-4 col-sm-4 my-2 my-md-0 my-lg-0 text-center">
                         <a asp-controller="Complaint" asp-action="EditStatusApprove" asp-route-id="@Model.Id" class="btn btn-outline-success btn-sm rounded-1 border-1 shadow w-50"><b>Approve</b></a>
                         </div>
                    
-                    <div class="col-4 text-center  ">
+                    <div class="col-12 col-md-4 col-sm-4 my-2 my-md-0 my-lg-0 text-center  ">
                         <a asp-controller="Complaint" asp-action="EditStatusDeny" asp-route-id="@Model.Id" class="btn btn-outline-danger btn-sm rounded-1 border-1 shadow w-50  "><b>Deny</b></a>
                     </div>
-                    <div class="col-4 text-center  ">
+                    <div class="col-12 col-md-4 col-sm-4 my-2 my-md-0 my-lg-0 text-center  ">
                         <a asp-controller="Complaint" asp-action="GetAllComplaints"  class="btn btn-outline-primary btn-sm rounded-1 border-1 shadow w-50   "><b>Back</b></a>
                     </div>
                 </div>

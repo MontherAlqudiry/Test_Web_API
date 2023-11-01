@@ -74,6 +74,7 @@ namespace Test_Web_Application.Controllers
             var userObject = JsonConvert.DeserializeObject<User>(userData);
             HttpContext.Session.SetString("UserId", userObject.Id.ToString());
             HttpContext.Session.SetString("UserRole", userObject.Role.ToString());
+
             // string  serObj = JsonConvert.SerializeObject(userObject);
 
 
