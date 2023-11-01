@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Test_Web_Application.Models
 {
@@ -12,17 +13,21 @@ namespace Test_Web_Application.Models
         public string Content { get; set; }
         [DisplayName("Type")]
         public string Type { get; set; }
-
-        public string File {  get; set; }
+        [AllowNull]
+        public string? File {  get; set; }
 
         [NotMapped]
-        public IFormFile uploadFile { get; set; }
+        [AllowNull]
+        public IFormFile? uploadFile { get; set; }
 
         public string Status { get; set; } = "Pending"; 
 
         public int UserId { get; set; }
         public string UserGmail { get; set; }
-        public string demandOneText { get; set; }
+        [AllowNull]
+        public string? demandOneText { get; set; }
+        [AllowNull]
+        public string? demandTwoText { get; set; }
         [NotMapped]
 
         [ForeignKey("UserId")]

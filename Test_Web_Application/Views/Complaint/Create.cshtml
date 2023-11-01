@@ -22,7 +22,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row mb-4">
                 <input asp-for="UserId" type="hidden" value="@User.Id" class="form-control shadow rounded-1 text-black beige_color" />
-                <input asp-for="UserId" type="hidden" value="@User.Email" class="form-control shadow rounded-1 text-black beige_color" />
+                <input asp-for="UserGmail" type="hidden" value="@User.Email" class="form-control shadow rounded-1 text-black beige_color" />
                     <div class="col-6">
                         <div class="form-group">
                     <label asp-for="Name" class="control-label text-black h5"></label>
@@ -39,6 +39,7 @@
                      </div>
                 </div>
 
+
                 <div class="form-group mb-4">
             <label asp-for="Content" class="control-label h5"></label>
                 <textarea asp-for="Content" class="form-control shadow text-black beige_color" rows="6" placeholder=""></textarea>
@@ -49,32 +50,36 @@
                
                     <div class="col-8 align-items-center align-self-center"><h4 class="h5 text-black">Add Mental Demand </h4></div>
                     <div class="col-4 mb-1 text-end">
-                       <i id ="toggleDivButton" class="bi bi-plus-square-fill   text-black"></i>
+                       <i id ="toggleDivOneButton" class="bi bi-plus-square-fill   text-black"></i>
                        
                     </div>
                 </div>
             </div>
 
-            <div class="form-group mb-4" id="demandOneDiv" style="display: none;">
+            <div class="form-group mb-4" id="demandOneDivOne" style="display: none;">
                 <label asp-for="demandOneText" class="control-label h5">Complaint Content </label>
                 <textarea asp-for="demandOneText" class="form-control shadow text-black beige_color" rows="6" placeholder=""></textarea>
                 <span asp-validation-for="demandOneText" class="text-danger rounded-1"></span>
             </div>
+
+
+
+
             <div class="card shadow border-white rounded-1 mb-4 pt-3 pe-2 ps-2 pb-2">
                 <div class="row me-1 ms-1 ">
 
                     <div class="col-8 align-items-center align-self-center"><h4 class="h5 text-black">Add assurance Demand </h4></div>
                     <div class="col-4 mb-1 text-end">
-                        <i id="toggleDivButton" class="bi bi-plus-square-fill   text-black"></i>
+                        <i id="toggleDivButtonTwo" class="bi bi-plus-square-fill   text-black"></i>
 
                     </div>
                 </div>
             </div>
 
-            <div class="form-group mb-4" id="demandOneDiv" style="display: none;">
-                <label asp-for="demandOneText" class="control-label h5">Complaint Content </label>
-                <textarea asp-for="demandOneText" class="form-control shadow text-black beige_color" rows="6" placeholder=""></textarea>
-                <span asp-validation-for="demandOneText" class="text-danger rounded-1"></span>
+            <div class="form-group mb-4" id="demandTwoDiv" style="display: none;">
+                <label asp-for="demandTwoText" class="control-label h5">Complaint Content </label>
+                <textarea asp-for="demandTwoText" class="form-control shadow text-black beige_color" rows="6" placeholder=""></textarea>
+                <span asp-validation-for="demandTwoText" class="text-danger rounded-1"></span>
             </div>
 
 
@@ -106,14 +111,27 @@
     }
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var toggleDivButton = document.getElementById("toggleDivButton");
-        var demandOneDiv = document.getElementById("demandOneDiv");
+        var toggleDivButtonOne = document.getElementById("toggleDivOneButton");
+        var demandOneDivOne = document.getElementById("demandOneDivOne");
 
-        toggleDivButton.addEventListener("click", function () {
-            if (demandOneDiv.style.display === "none") {
-                demandOneDiv.style.display = "block";
+        toggleDivButtonOne.addEventListener("click", function () {
+            if (demandOneDivOne.style.display === "none") {
+                demandOneDivOne.style.display = "block";
             } else {
-                demandOneDiv.style.display = "none";
+                demandOneDivOne.style.display = "none";
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var toggleDivButtonTwo = document.getElementById("toggleDivButtonTwo");
+        var demandTwoDiv = document.getElementById("demandTwoDiv");
+
+        toggleDivButtonTwo.addEventListener("click", function () {
+            if (demandTwoDiv.style.display === "none") {
+                demandTwoDiv.style.display = "block";
+            } else {
+                demandTwoDiv.style.display = "none";
             }
         });
     });

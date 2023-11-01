@@ -14,11 +14,15 @@ namespace Test_Web_API.Models
         public string Content { get; set; }
         
         public string Type { get; set; }
-        public string File { get; set; }
+        [AllowNull]
+        public string? File { get; set; }
 
         public int UserId { get; set; }
         public string UserGmail { get; set; }
-        public string demandOneText { get; set; }
+        [AllowNull]
+        public string? demandOneText { get; set; }
+        [AllowNull]
+        public string? demandTwoText { get; set; }
         public string Status { get; set; } = "Pending";
         [NotMapped]
         [JsonIgnore]

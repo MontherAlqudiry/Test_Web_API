@@ -7,129 +7,123 @@
         //var UserId = ViewBag.UserId;
     }
 
-    <div class="row m-5 ">
-        <div class="col-1"></div>
-        <div class="col-5 text-start"><h1 class="me-5 ms-2">Complaints</h1></div>
-        <div class="col-5 text-end display-6"> <a asp-controller="Complaint" asp-action="Create" asp-route-id="" class="btn btn-outline-primary rounded-1 shadow">Create New Copmlaint</a></div>
-        <div class="col-1"></div>
+<div class="row m-5">
+    <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 text-start "> </div>
+    <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-start ">
+        <h1 class="me-5 ms-2">Complaints</h1>
     </div>
+    <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-end">
+        <a asp-controller="Complaint" asp-action="Create" asp-route-id="" class="btn btn-outline-primary rounded-1 shadow">Create New Complaint</a>
+    </div>
+    <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 text-start "> </div>
+</div>
 
 
-    <div class="row me-5 ms-5  ">
-        <div class="col-1"></div>
-        <div class="col-10 rounded-2">
-        <table class="table table-bordered  table-hover table-responsive table-responsive-md  table-responsive-sm  table-striped  shadow border-white rounded-2 ">
-        <thead>
-            <tr>
-               
-                    <th class="text-center h5">
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                    <th class="text-center h5">
-                    @Html.DisplayNameFor(model => model.Content)
-                </th>
-                    <th class="text-center h5">
-                    @Html.DisplayNameFor(model => model.Type)
-                </th>
+<div class="row me-5 ms-5">
+    <div class="col-1"></div>
+    <div class="col-10 rounded-2">
+        <div class="table-responsive table-responsive-md table-responsive-sm">
+            <table class="table table-bordered table-hover table-striped shadow border-white rounded-2">
+                <thead>
+                    <tr>
+                        <th class="text-center h5">
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th class="text-center h5">
+                            @Html.DisplayNameFor(model => model.Content)
+                        </th>
+                        <th class="text-center h5">
+                            @Html.DisplayNameFor(model => model.Type)
+                        </th>
                         <th class="text-center h5">
                             @Html.DisplayNameFor(model => model.Status)
                         </th>
-                    <th class="text-center h4"><b><i class="bi bi-view-list "></i></b></th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach (var item in Model) {
-            <tr>
-                  
-                        <td class="h6 text-center align-middle">
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                        <td class=" text-center align-middle">
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                        <td class="h6 text-center align-middle">
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-
-                <td class="h6 text-center align-middle">
-
-                    @if (item.Status == "Pending")
+                        <th class="text-center h4"><b><i class="bi bi-view-list"></i></b></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
                     {
-                        <h6 class="text-info">Pending</h6>
+                        <tr>
+                            <td class="h6 text-center align-middle">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td class="text-center align-middle">
+                                @Html.DisplayFor(modelItem => item.Content)
+                            </td>
+                            <td class="h6 text-center align-middle">
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                            <td class="h6 text-center align-middle">
+                                @if (item.Status == "Pending")
+                                {
+                                    <h6 class="text-info">Pending</h6>
+                                }
+                                else if (item.Status == "Approved")
+                                {
+                                    <h6 class="text-success h6">Approved</h6>
+                                }
+                                else if (item.Status == "Denied")
+                                {
+                                    <h6 class="text-danger h6">Denied</h6>
+                                }
+                            </td>
+                            <td class="h6 text-center align-middle">
+                                <div class="btn-group rounded-1" role="group">
+                                    <a asp-controller="Complaint" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm rounded-1 border-1 shadow">View</a>
+                                </div>
+                            </td>
+                        </tr>
                     }
-                    else if (item.Status == "Approved")
-                    {
-                        <h6 class="text-success h6">Approved</h6>
-                    }
-                    else if (item.Status == "Denied")
-                    {
-                        <h6 class="text-danger h6">Denied</h6>
-
-                    }
-
-                    @* @Html.DisplayFor(modelItem => item.Type)*@
-
-                </td>
-
-
-                        <td class="h6 text-center align-middle">
-                            <div class=" btn-group rounded-1 " role="group">
-                                <a asp-controller="Complaint" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm rounded-1 border-1 shadow">View</a>
-                           
-
-                            </div>
-                </td>
-            </tr>
-    }
-        </tbody>
-    </table>
+                </tbody>
+            </table>
         </div>
-        <div class="col-1"></div>
     </div>
-    <div class="row me-5 ms-5 mt-3">
-        <div class="col-1"></div>
-        <div class="col-10">
-        @foreach (var item in Model)
-        {
-
-            <div class="card col-4 shadow-lg border-white rounded-2  p-3 me-2 ms-2">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6"> <h4 class="card-title text-black">@Html.DisplayFor(modelItem => item.Name)</h4></div>
-                        <div class="col-6 text-end mt-1">
-
-                            @if (item.Status == "Pending")
-                            {
-                                    <h6 class="text-info"><b>Pending</b></h6>
-                            }
-                            else if (item.Status == "Approved")
-                            {
-                                <h6 class="text-success h6">Approved</h6>
-                            }
-                            else if (item.Status == "Denied")
-                            {
-                                <h6 class="text-danger h6">Denied</h6>
-
-                            }
-
-                        </div>
-
-                    </div>
-                    <h5 class="h6 mb-3 text-black-50">@Html.DisplayFor(modelItem => item.Type)</h5>
-                    <p class="card-text me-1 ms-1">@Html.DisplayFor(modelItem => item.Content)</p>
-              
-                    <div class=" row  text-center w-100 mt-2">
-                        <div class="col-12 text-center  ">
-                                <a asp-controller="Complaint" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm rounded-1 border-1 shadow w-50 text-black "><b>View</b></a>
+    <div class="col-1"></div>
+</div>
+<div class="row me-5 ms-5 mt-3">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-6 col-lg-6 mb-3">
+                    <div class="card shadow-lg border-white rounded-2 p-3 " style="height:500px;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h4 class="card-title text-black">@Html.DisplayFor(modelItem => item.Name)</h4>
+                                </div>
+                                <div class="col-6 text-end mt-1">
+                                    @if (item.Status == "Pending")
+                                    {
+                                        <h6 class="text-info"><b>Pending</b></h6>
+                                    }
+                                    else if (item.Status == "Approved")
+                                    {
+                                        <h6 class="text-success h6">Approved</h6>
+                                    }
+                                    else if (item.Status == "Denied")
+                                    {
+                                        <h6 class="text-danger h6">Denied</h6>
+                                    }
+                                </div>
+                            </div>
+                            <h5 class="h6 mb-3 text-black-50">@Html.DisplayFor(modelItem => item.Type)</h5>
+                            <p class="card-text me-1 ms-1 ">
+                                @Html.DisplayFor(modelItem => item.Content)</p>
+                            <div class="row text-center w-100 mt-2">
+                                <div class="col-12 text-center">
+                                    <a asp-controller="Complaint" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm rounded-1 border-1 shadow w-50 text-black"><b>View</b></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-        }
+            }
         </div>
-        <div class="col-1"></div>
     </div>
+    <div class="col-1"></div>
+</div>
 
 

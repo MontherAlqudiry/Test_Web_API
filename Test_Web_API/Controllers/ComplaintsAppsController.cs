@@ -197,6 +197,26 @@ namespace Test_Web_API.Controllers
         
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateDemandTwo(demandTwo demand)
+        {
+
+            if (_context.ComplaintsApp == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.demandOne'  is null.");
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.demandTwo.Add(demand);
+            await _context.SaveChangesAsync();
+
+            return Ok();
+
+        }
+
 
         private bool ComplaintsAppExists(int id)
         {

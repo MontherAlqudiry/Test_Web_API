@@ -84,9 +84,11 @@ namespace Test_Web_Application.Controllers
         {
             var userObjectJ = HttpContext.Session.GetString("UserObject");
             var userObject = JsonConvert.DeserializeObject<User>(userObjectJ);
-            ViewBag.UserObject = userObject;
+            
+            
             ViewBag.UserId = userObject.Id;
-
+            ViewBag.UserObject = userObject;
+            
 
 
 
@@ -105,43 +107,47 @@ namespace Test_Web_Application.Controllers
                 //to save the upload file in wwrootpath
                 string wwwRootPath = _HostEnvironment.WebRootPath;
 
-
-                // var  fileName = obj.uploadFile.FileName;
-                var fileName = obj.uploadFile.FileName;
-                obj.File = fileName;
-
-                string path = Path.Combine(wwwRootPath + "/UserFile/", fileName);
-                using (var fileStream = new FileStream(path, FileMode.Create))
+                if (obj.uploadFile == null)
                 {
-                    await obj.uploadFile.CopyToAsync(fileStream);
+                    obj.uploadFile = new FormFile(Stream.Null, 0, 0, "", "");
                 }
-                string userjson = HttpContext.Session.GetString("UserObject");
-                var userobj = JsonConvert.DeserializeObject<User>(userjson);
-                int userId = userobj.Id;
-                userobj.ConfirmPassword = userobj.Password;
-
-
-                ComplaintsApp newobj = new()
-                {
-                    Id = obj.Id,
-                    Name = obj.Name,
-                    Content = obj.Content,
-                    Type = obj.Type,
-                    File = obj.File,
-                    uploadFile = obj.uploadFile,
-                    Status = obj.Status,
-                    UserGmail = userobj.Email,
-                    UserId = obj.UserId,
-                    User = obj.User,
-                
-                    demandOneText=obj.demandOneText
-
-                   
-                };
-                newobj.File = fileName;
-                newobj.User = userobj;
                
+                    // var  fileName = obj.uploadFile.FileName;
+                    var fileName = obj.uploadFile.FileName;
+                    obj.File = fileName;
 
+                    string path = Path.Combine(wwwRootPath + "/UserFile/", fileName);
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await obj.uploadFile.CopyToAsync(fileStream);
+                    }
+                    string userjson = HttpContext.Session.GetString("UserObject");
+                    var userobj = JsonConvert.DeserializeObject<User>(userjson);
+                    int userId = userobj.Id;
+                    userobj.ConfirmPassword = userobj.Password;
+
+
+                    ComplaintsApp newobj = new()
+                    {
+                        Id = obj.Id,
+                        Name = obj.Name,
+                        Content = obj.Content,
+                        Type = obj.Type,
+                        File = obj.File,
+                        uploadFile = obj.uploadFile,
+                        Status = obj.Status,
+                        UserGmail = userobj.Email,
+                        UserId = obj.UserId,
+                        User = obj.User,
+                        demandOneText = obj.demandOneText,
+                        demandTwoText = obj.demandTwoText
+
+
+                    };
+                    newobj.File = fileName;
+                    newobj.User = userobj;
+
+               
                 string ObjJson = JsonConvert.SerializeObject(newobj);
 
                 // Send the JSON content to the Web API controller.
@@ -151,21 +157,37 @@ namespace Test_Web_Application.Controllers
 
                 ComplaintsApp compresp = JsonConvert.DeserializeObject<ComplaintsApp>(responseContent);
 
-                //create demand_one 
-                demandOne dOne = new();
-                dOne.demandOneText = compresp.demandOneText;
-                dOne.ComplaintId = compresp.Id;
-                dOne.ComplaintsApp=compresp;
-                dOne.UserId=compresp.UserId;
-                string dOneJson= JsonConvert.SerializeObject(dOne);
-                // Send the JSON content to the Web API controller.
-                StringContent D1content = new StringContent(dOneJson, Encoding.UTF8, "application/problem+json");
-                HttpResponseMessage D1response = _Client.PostAsync(_Client.BaseAddress + "ComplaintsApps/CreateDemandOne", D1content).Result;
-                string D1responseContent = await D1response.Content.ReadAsStringAsync();
 
 
+                if (compresp.demandOneText != null)
+                {
+                    //create demand_one 
+                    demandOne dOne = new();
+                    dOne.demandOneText = compresp.demandOneText;
+                    dOne.ComplaintId = compresp.Id;
+                    dOne.ComplaintsApp = compresp;
+                    dOne.UserId = compresp.UserId;
+                    string dOneJson = JsonConvert.SerializeObject(dOne);
+                    // Send the JSON content to the Web API controller.
+                    StringContent D1content = new StringContent(dOneJson, Encoding.UTF8, "application/problem+json");
+                    HttpResponseMessage D1response = _Client.PostAsync(_Client.BaseAddress + "ComplaintsApps/CreateDemandOne", D1content).Result;
+                    string D1responseContent = await D1response.Content.ReadAsStringAsync();
+                }
 
-
+                if (compresp.demandTwoText != null)
+                {
+                    //create demand_Two 
+                    demandTwo dTwo = new();
+                    dTwo.demandTwoText = compresp.demandTwoText;
+                    dTwo.ComplaintId = compresp.Id;
+                    dTwo.ComplaintsApp = compresp;
+                    dTwo.UserId = compresp.UserId;
+                    string dTwoJson = JsonConvert.SerializeObject(dTwo);
+                    // Send the JSON content to the Web API controller.
+                    StringContent D2content = new StringContent(dTwoJson, Encoding.UTF8, "application/problem+json");
+                    HttpResponseMessage D2response = _Client.PostAsync(_Client.BaseAddress + "ComplaintsApps/CreateDemandTwo", D2content).Result;
+                    string D2responseContent = await D2response.Content.ReadAsStringAsync();
+                }
 
 
 
