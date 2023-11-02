@@ -2113,11 +2113,11 @@ progress {
     --bs-table-bg-type: initial;
     --bs-table-color-state: initial;
     --bs-table-bg-state: initial;
-    --bs-table-color: #FAF8EC;
+    --bs-table-color: #000;
     --bs-table-bg: #fff;
     --bs-table-border-color: rgba(0, 0, 0, 0.05);
     --bs-table-accent-bg: transparent;
-    --bs-table-striped-color: #FAF8EC;
+    --bs-table-striped-color: #000;
     --bs-table-striped-bg: #FAF8EC;
     --bs-table-active-color: var(--bs-emphasis-color);
     --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1);

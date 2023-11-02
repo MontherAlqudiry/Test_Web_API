@@ -17,12 +17,12 @@ namespace Test_Web_API.Controllers
     public class ComplaintsAppsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly ILogger<ComplaintsAppsController> logger;
+      
 
-        public ComplaintsAppsController(ApplicationDbContext context, ILogger<ComplaintsAppsController> _logger)
+        public ComplaintsAppsController(ApplicationDbContext context)
         {
             _context = context;
-            _logger = logger;
+          
 
         }
 

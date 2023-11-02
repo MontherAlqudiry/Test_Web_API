@@ -30,6 +30,7 @@ namespace Test_Web_Application.Controllers
 
 
             ViewBag.UserRole = UserRole;
+            ViewBag.userObject= userObject;
 
 
             return View();

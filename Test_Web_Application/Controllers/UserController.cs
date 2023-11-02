@@ -84,12 +84,18 @@ namespace Test_Web_Application.Controllers
             // var userid = userObject.Id;
             if (response.IsSuccessStatusCode)
             {
-                ViewBag.User = userObject;
+                
+                ViewBag.UserObject=userObject;
                 // TempData["userId"] = userid;
                 // ViewBag.UserId = userid ;
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Login failed. Please try again.");
+                return View();
+            }
+           
         }
 
 
