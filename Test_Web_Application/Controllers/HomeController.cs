@@ -15,9 +15,6 @@ namespace Test_Web_Application.Controllers
         {
             _logger = logger;
             _HostEnvironment = hc;
-
-         
-
         }
 
         public IActionResult Index() 

@@ -5,17 +5,17 @@
 }
 
 
-<div class="row m-5 columns">
+<div class="row m-5 ">
     <div class="col-2"></div>
-    <div class="col-5 col-md-5" id="column1" ><h4 class="">Create New Complaint</h4></div>
-   
-    <div class="col-5 col-md-5 " id="column2">
+    <div class="col-4 col-md-4" id="column1" ><h4 class="">Create New Complaint</h4></div>
+    <div class="text-end fucking-end god-dam-end align-items-end align-self-end align-content-end align col-4 col-md-4 " style="display:flex; justify-content:end; gap:10px" id="column2">
 
-        <div class="row " id="btnsRow">
+        <div class="row">
 
-            <div class="col-1 ">
-                <a class="btn btn-outline-primary border-1 border-black btn-sm pe-2 ps-2 pt-0 pb-0 text-center h6 rounded-1 shadow " id="ENbutton" >EN</a> </div>
-            <div class="col-1  ">
+            <div class="col-5 ">
+                <a class="btn btn-outline-primary border-1 border-black btn-sm pe-2 ps-2 pt-0 pb-0 text-center h6 rounded-1 shadow " id="ENbutton">EN</a>
+            </div>
+            <div class="col-5  ">
                 <a class="btn btn-outline-primary border-1 border-black btn-sm pe-2 ps-2 pt-0 pb-0 text-center h6 rounded-1 shadow " id="ARbutton">AR </a>
             </div>
 
@@ -23,11 +23,12 @@
 
     </div>
     <div class="col-2"></div>
-   @*  <div class="col-6 col-md-6  text-end "> <img class="p-0 " src="@("~/Image/Create_Image.png")" asp-append-version="true " /></div>
-      *@   
- 
+
+
+</div>
+
     
-    </div>
+    
    
 
    <div class=" row  align-middle me-5 ms-5 ">
@@ -40,7 +41,7 @@
                 <input asp-for="UserGmail" type="hidden" value="@User.Email" class="form-control shadow rounded-1 text-black beige_color" />
                     <div class="col-6">
                         <div class="form-group">
-                    <label asp-for="Name" id="Title" class="control-label text-black h5 ">Title</label>
+                        <label asp-for="Name" id="Title" class="control-label text-black h5  ">Title</label>
                         <input asp-for="Name" class="form-control shadow rounded-1 text-black beige_color" />
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
@@ -137,7 +138,8 @@
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () 
+    {
        // var columnsContainer = document.querySelector('.columns');
         var btnsRow = document.getElementById("btnsRow");
         var enButton = document.getElementById("ENbutton");
@@ -167,12 +169,15 @@
             DemandTwo.innerText = "ADD ASSURANCE DEMAND"
             AnotherDemand.innerText = "ADD Another DEMANDs"
 
-            TitleLabel.classList.remove("float-end");
-            typeLabel.classList.remove("float-end");
-            Content.classList.remove("float-end");
-            DemandsTitle.classList.remove("text-end");
-            uploadFile.classList.remove("float-end");
-            btnsRow.classList.remove("text-start")
+            TitleLabel.classList.remove("float-end", "Noto_Sans");
+            typeLabel.classList.remove("float-end", "Noto_Sans");
+            Content.classList.remove("float-end", "Noto_Sans");
+            DemandsTitle.classList.remove("text-end", "Noto_Sans");
+            uploadFile.classList.remove("float-end", "Noto_Sans");
+           // DemandOne.classList.remove("Noto_Sans");
+           // DemandTw.classList.remove("Noto_Sans");
+           // AnotherDemand.classList.remove("Noto_Sans");
+            btnsRow.classList.remove("text-start", "Noto_Sans");
 
         });
 
@@ -188,12 +193,15 @@
             DemandTwo.innerText="إضافه شكوى تأمين"
             AnotherDemand.innerText="إضافة شكاوي ’أخرى"
 
-            TitleLabel.classList.add("float-end");
-            typeLabel.classList.add("float-end");
-            Content.classList.add("float-end");
-            DemandsTitle.classList.add("text-end");
-            uploadFile.classList.add("float-end");
-            btnsRow.classList.add("text-start")
+            TitleLabel.classList.add("float-end", "Noto_Sans");
+            typeLabel.classList.add("float-end", "Noto_Sans");
+            Content.classList.add("float-end", "Noto_Sans");
+            DemandsTitle.classList.add("text-end", "Noto_Sans");
+            uploadFile.classList.add("float-end", "Noto_Sans");
+           // DemandOne.classList.add("Noto_Sans");
+           // DemandTwo.classList.add("Noto_Sans");
+           // AnotherDemand.classList.add("Noto_Sans");
+            btnsRow.classList.add("text-start", "Noto_Sans");
         });
     });
 </script>
