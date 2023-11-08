@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Web_API", "Test_Web_API\Test_Web_API.csproj", "{E9BF64F0-D47C-4F54-B954-5DD51E4BFF00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test_Web_API", "Test_Web_API\Test_Web_API.csproj", "{E9BF64F0-D47C-4F54-B954-5DD51E4BFF00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Web_Application", "Test_Web_Application\Test_Web_Application.csproj", "{412EC364-9C7B-47F9-8277-5B19E3A11EB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test_Web_Application", "Test_Web_Application\Test_Web_Application.csproj", "{412EC364-9C7B-47F9-8277-5B19E3A11EB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
