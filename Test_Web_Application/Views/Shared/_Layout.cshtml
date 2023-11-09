@@ -24,7 +24,13 @@
         }
        
     
-
+        .card_hover{
+            transition:all
+           
+        }
+        .card:hover{
+            transform: scale(1.02);
+        }
         
 
 
@@ -43,14 +49,14 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow shadow mb-3 p-4  ">
             <div class="container-fluid bg-white">
-                @if (User != null)
+                @if (userId != null && userId.ToString() !="0")
                 {
-                    <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index"><h3 class="h3">Demo</h3></a>
+                    <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index"><h3 class="h3"><i class="bi bi-bookshelf"></i>Demo</h3></a>
                 }
                 else
                 {
                    // <img class=" " src="@("~/Image/logo.png")" asp-append-version="true" />
-                    <h3 class="h3 "> Demo</h3>
+                    <h3 class="h3 "> <i class="bi bi-bookshelf"></i> Demo</h3>
                         }
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -150,28 +156,28 @@
            </div>
 
         <div class="row mb-5">
-            <div class="col-12 col-md-3 col-lg-3 shadow rounded-2 p-4 mb-5">
+            <div class="col-12 col-md-3 col-lg-3 card footer_green_color shadow rounded-2 p-4 mb-5">
                 <div class="card-img h2 text-white mb-2"><i class="bi bi-clock"></i></div>
                 <div class="text-white h5 mb-3">Save your time</div>
                 <div class="mb-3 text-white-50">Spend less time worrying and more time getting solutions. Try us today!</div>
                 <div class="text-warning">Learn More <i class="bi bi-arrow-right-short"></i></div>
             </div>
 
-            <div class="col-12 col-md-3 col-lg-3 shadow rounded-2 p-4 mb-5 ">
+            <div class="col-12 col-md-3 col-lg-3 card footer_green_color shadow rounded-2 p-4 mb-5 ">
                 <div class="card-img h2 text-white mb-2"><i class="bi bi-x-diamond"></i></div>
                 <div class="text-white h5 mb-3">Easy Submission</div>
                 <div class="mb-3 text-white-50">Complain hassle-free with our user-friendly platform. We're here to listen and assist you.</div>
                 <div class="text-warning">Learn More <i class="bi bi-arrow-right-short"></i></div>
             </div>
 
-            <div class="col-12 col-md-3 col-lg-3 shadow rounded-2 p-4 mb-5 ">
+            <div class="col-12 col-md-3 col-lg-3 card footer_green_color shadow rounded-2 p-4 mb-5 ">
                 <div class="card-img h2 text-white mb-2"><i class="bi bi-bicycle"></i></div>
                 <div class="text-white h5 mb-3">Swift Resolution</div>
                 <div class="mb-3 text-white-50">Experience quick complaint resolution with our platform.Your satisfaction is our top priority.</div>
                 <div class="text-warning">Learn More <i class="bi bi-arrow-right-short"></i></div>
             </div>
 
-            <div class="col-12 col-md-3 col-lg-3 shadow rounded-2 p-4 mb-5">
+            <div class="col-12 col-md-3 col-lg-3 card footer_green_color shadow rounded-2 p-4 mb-5">
                 <div class="card-img h2 text-white mb-2"><i class="bi bi-award"></i></div>
                 <div class="text-white h5 mb-3">Reliable Support</div>
                 <div class="mb-3 text-white-50">Count on our reliable support for your complaints. Your trust means everything to us.</div>
@@ -180,8 +186,15 @@
         </div>
           
         <div class="row mb-3 ">
-            <div class="col-6 h6 text-white"><i class="bi bi-telephone h5 text-white"></i>  066-881-991 </div>
-            <div class="col-6 h6 text-white text-end">follow us on social media <i class="bi bi-instagram h4 text-white"></i> <i class="bi bi-threads h4 text-white"></i> <i class="bi bi-linkedin h4 text-white"></i> <i class="bi bi-facebook  h4 text-white"></i></div>
+            <div class="col-8 col-md-6 col-lg-6 h6 text-white"><i class="bi bi-telephone h5 text-white"></i>  066-881-991 </div>
+            <div class="col-8 col-md-6 col-lg-6 h6 text-white text-end">follow us on social media <i class="bi bi-instagram h4 text-white "></i> <i class="bi bi-threads h4 text-white"></i> <i class="bi bi-linkedin h4 text-white"></i> <i class="bi bi-facebook  h4 text-white"></i></div>
+        </div>
+        <hr class=" text-white ms-3 me-3" /> 
+        <div class="row" > 
+            <div class="col-1"></div>
+            <div class="col-5 text-white-50 h6">© 2023 - All copyrights reserved</div>
+            <div class="col-5  text-end h6 text-white-50">Made With <i class="bi bi-suit-heart-fill"></i> By Monther Alqudiry</div>
+            <div class="col-1"></div>
         </div>
         
     </footer>
