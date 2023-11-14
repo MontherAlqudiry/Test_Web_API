@@ -47,16 +47,16 @@
     }
 
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow shadow mb-3 p-4  ">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  mb-3 p-4  ">
             <div class="container-fluid bg-white">
                 @if (userId != null && userId.ToString() !="0")
                 {
-                    <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index"><h3 class="h3"><i class="bi bi-bookshelf"></i>Demo</h3></a>
+                    <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index"><h3 class="h3 ">Demo</h3></a>
                 }
                 else
                 {
                    // <img class=" " src="@("~/Image/logo.png")" asp-append-version="true" />
-                    <h3 class="h3 "> <i class="bi bi-bookshelf"></i> Demo</h3>
+                    <h3 class="h3  ">  Demo</h3>
                         }
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -155,7 +155,7 @@
             <div class="col-5"></div>
            </div>
 
-        <div class="row mb-5">
+        <div class="row mb-5 text-center">
             <div class="col-12 col-md-3 col-lg-3 card footer_green_color shadow rounded-2 p-4 mb-5">
                 <div class="card-img h2 text-white mb-2"><i class="bi bi-clock"></i></div>
                 <div class="text-white h5 mb-3">Save your time</div>
@@ -170,7 +170,7 @@
                 <div class="text-warning">Learn More <i class="bi bi-arrow-right-short"></i></div>
             </div>
 
-            <div class="col-12 col-md-3 col-lg-3 card footer_green_color shadow rounded-2 p-4 mb-5 ">
+            <div class="col-12 col-md-3 col-lg-3  card footer_green_color shadow rounded-2 p-4 mb-5 ">
                 <div class="card-img h2 text-white mb-2"><i class="bi bi-bicycle"></i></div>
                 <div class="text-white h5 mb-3">Swift Resolution</div>
                 <div class="mb-3 text-white-50">Experience quick complaint resolution with our platform.Your satisfaction is our top priority.</div>

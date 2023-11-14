@@ -84,6 +84,7 @@ namespace Test_Web_API.Controllers
             //var UserSessionObj = JsonConvert.DeserializeObject<User>(UserSessionJson);
 
             complaint.Status = "Approved";
+            _context.Entry(complaint).State = EntityState.Modified;
             await _context.SaveChangesAsync();
                 // Successful response
             
